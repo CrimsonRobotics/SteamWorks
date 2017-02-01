@@ -7,5 +7,9 @@ package org.usfirst.frc.team2526.robot;
  * floating around.
  */
 public class RobotMap {
-	public static final int CLIMBER_MOTOR = 0;
+  public static final int CLIMBER_MOTOR = 0;
+	public static final int driveTrainFrontLeft = 9;
+	public static final int driveTrainFrontRight = 2;
+	public static final int driveTrainBackLeft = 1;
+	public static final int driveTrainBackRight = 8;
 }
