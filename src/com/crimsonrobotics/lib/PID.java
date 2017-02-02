@@ -1,13 +1,13 @@
 package com.crimsonrobotics.lib;
 
 public class PID {
-	double p = 0; //Default Proportional gain
-	double i = 0; //Default Integral gain
-	double d = 0; //Default derivative gain
-	double f = 0; //Default feedforward gain
-	int iZone = 0; //Default iZone gain (difference before integrator is run)
-	double rampRate = 0; //Default rampRate
-	int profile = 0; //Default PID profile slot on the Talon
+	public double p = 0; //Default Proportional gain
+	public double i = 0; //Default Integral gain
+	public double d = 0; //Default derivative gain
+	public double f = 0; //Default feedforward gain
+	public int iZone = 0; //Default iZone gain (difference before integrator is run)
+	public double rampRate = 0; //Default rampRate
+	public int profile = 0; //Default PID profile slot on the Talon
 	public PID(double p, double i, double d){
 		this.p = p;
 		this.i = i;
