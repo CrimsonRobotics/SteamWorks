@@ -1,20 +1,15 @@
 package org.usfirst.frc.team2526.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc.team2526.robot.Robot;
-import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
 
 public class RunFlywheel extends Command {
-	
+
 	private int rpm = 3000;
-	Flywheel FW;
 	
-	public RunFlywheel(int rpm, Flywheel FW) {
+	public RunFlywheel() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.flywheel);
-		this.FW = FW;
 	}
 
 	// Called just before this Command runs the first time
@@ -26,9 +21,7 @@ public class RunFlywheel extends Command {
 	@Override
 	protected void execute() {
 		
-		FW.runFlywheel(rpm);
-		
-		SmartDashboard.putNumber("rotationsPerMinute: " , rpm);
+		Robot.flywheel.runFlywheel(rpm);
 		
 	}
 
@@ -41,7 +34,7 @@ public class RunFlywheel extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		FW.stopFlywheel();
+		Robot.flywheel.stopFlywheel();
 	}
 
 	// Called when another command which requires one or more of the same
