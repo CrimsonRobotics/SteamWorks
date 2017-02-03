@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2526.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2526.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +26,8 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	
+	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON);
 
 	/**
 	 * This function is run when the robot is first started up and should be
