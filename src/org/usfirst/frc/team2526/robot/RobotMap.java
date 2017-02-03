@@ -12,4 +12,7 @@ public class RobotMap {
 	public static final int driveTrainFrontRight = 2;
 	public static final int driveTrainBackLeft = 1;
 	public static final int driveTrainBackRight = 8;
+  public static int elevatorBottom = 9;
+	public static int elevatorMiddle = 8;
+	public static int intakeRight = 7;
 }
