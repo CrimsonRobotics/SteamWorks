@@ -1,9 +1,8 @@
 package org.usfirst.frc.team2526.robot.subsystems;
 
 import org.usfirst.frc.team2526.robot.commands.TeleopDrive;
-
+import com.crimsonrobotics.lib.PID;
 import com.ctre.CANTalon;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,6 +13,8 @@ public class DriveTrain extends Subsystem {
 	private CANTalon fR; //Front Right Motor
 	private CANTalon bR; //Back Right Motor
 	private RobotDrive drive; //RobotDrive instance to control motors during teleop
+	private PID gainsLeft; //PID Gains for left side.
+	private PID gainsRight; //PID Gains for right side.
 	
 	public DriveTrain(int fLID, int bLID, int fRID, int bRID){
 		fL = new CANTalon(fLID);
@@ -23,6 +24,18 @@ public class DriveTrain extends Subsystem {
 		setFollowerOf(fL, bL);//fL leads bL follows
 		setFollowerOf(fR, bR);//fR leads bR follows
 		drive = new RobotDrive(this.fL, this.fR);
+	}
+	public DriveTrain(int fLID, int bLID, int fRID, int bRID, PID gainsLeft, PID gainsRight){
+		this(fLID, bLID, fRID, bRID);
+		this.gainsLeft = gainsLeft;
+		this.gainsRight = gainsRight;
+		pidInit();
+	}
+	private void pidInit(){
+		fL.setPID(gainsLeft.p, gainsLeft.i, gainsLeft.d, gainsLeft.f, gainsLeft.iZone, gainsLeft.rampRate, gainsLeft.profile);
+		fR.setPID(gainsRight.p, gainsRight.i, gainsRight.d, gainsRight.f, gainsRight.iZone, gainsRight.rampRate, gainsRight.profile);
+		fL.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 	}
 	protected void initDefaultCommand() {
 		setDefaultCommand(new TeleopDrive());
@@ -35,12 +48,22 @@ public class DriveTrain extends Subsystem {
 		drive.arcadeDrive(right.getY(), left.getX());
 	}
 	/*
+	 * @param Speed in rotations per minute (rpm) for the left side.
+	 * @param Speed in rotations per minute (rpm) for the right side.
+	 */
+	public void speedDrive(int speedLeft, int speedRight){
+		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
+		fL.enable();
+		fR.enable();
+		fL.set(speedLeft);
+		fR.set(speedRight);
+	}
+	/*
 	 * @param Percent voltage for the left side of the drive train -1 to 1 scale.
 	 * @param Percent voltage for the right side of the drive train -1 to 1 scale.
 	 */
 	public void percentVBusDrive(double voltageLeft, double voltageRight){
-		fL.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		fR.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		changeLeaderControlMode(CANTalon.TalonControlMode.PercentVbus);
 		fL.set(voltageLeft);
 		fR.set(voltageRight);
 	}
@@ -51,5 +74,12 @@ public class DriveTrain extends Subsystem {
 	private void setFollowerOf(CANTalon leader, CANTalon follower){
 		follower.changeControlMode(CANTalon.TalonControlMode.Follower);
 		follower.set(leader.getDeviceID());
+	}
+	/*
+	 * @param Control mode of the leading talons.
+	 */
+	private void changeLeaderControlMode(CANTalon.TalonControlMode mode){
+		fL.changeControlMode(mode);
+		fR.changeControlMode(mode);
 	}
 }
