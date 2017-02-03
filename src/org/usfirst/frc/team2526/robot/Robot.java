@@ -23,7 +23,7 @@ public class Robot extends IterativeRobot {
 	//DriveTrain Subsystem
 	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.driveTrainFrontLeft, RobotMap.driveTrainBackLeft, RobotMap.driveTrainFrontRight, RobotMap.driveTrainBackRight);
 	//Climber Subsystem
-  public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
+    public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
   //AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
