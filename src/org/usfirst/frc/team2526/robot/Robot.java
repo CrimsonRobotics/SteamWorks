@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
-	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON);
+	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.GAINS_FLYWHEEL);
 
 	/**
 	 * This function is run when the robot is first started up and should be
