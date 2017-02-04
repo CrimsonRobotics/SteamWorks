@@ -17,8 +17,8 @@ public class Climber extends Subsystem {
 		setDefaultCommand(new ClimberCommand());
 	}
 	public void climb(Joystick controller){
-		if (controller.getY() > 0 ){
-			climber.set(Math.abs(INPUT_MULTIPLIER*controller.getY()));
+		if (-controller.getY() > 0 ){
+			climber.set(Math.abs(-controller.getY()));
 		}
 	}
 }
