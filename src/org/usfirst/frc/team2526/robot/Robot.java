@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2526.robot;
 
+import org.usfirst.frc.team2526.robot.subsystems.GearIntake;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -24,10 +25,12 @@ public class Robot extends IterativeRobot {
 	//DriveTrain Subsystem
 	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.driveTrainFrontLeft, RobotMap.driveTrainBackLeft, RobotMap.driveTrainFrontRight, RobotMap.driveTrainBackRight);
 	//Climber Subsystem
-  	public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
-  	//Flywheel Subsystem
-  	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.GAINS_FLYWHEEL);
-  	//AutonomousCommand
+  public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
+  //Flywheel Subsystem
+  public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.GAINS_FLYWHEEL);
+  //Gearplacer Subsystem
+  public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
+  //AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
