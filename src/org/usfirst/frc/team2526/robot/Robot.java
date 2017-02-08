@@ -1,16 +1,14 @@
+
 package org.usfirst.frc.team2526.robot;
 
 import org.usfirst.frc.team2526.robot.subsystems.GearIntake;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team2526.robot.subsystems.Climber;
-import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
-import com.ctre.CANTalon;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,17 +18,10 @@ import com.ctre.CANTalon;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	//Controls
-	public static OI oi = new OI();
-	//DriveTrain Subsystem
-	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.driveTrainFrontLeft, RobotMap.driveTrainBackLeft, RobotMap.driveTrainFrontRight, RobotMap.driveTrainBackRight);
-	//Climber Subsystem
-  public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
-  //Flywheel Subsystem
-  public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.GAINS_FLYWHEEL);
-  //Gearplacer Subsystem
-  public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
-  //AutonomousCommand
+
+	public static GearIntake gearintake;
+	public static OI oi;
+
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -40,6 +31,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
+		oi = new OI();
+//		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
@@ -110,6 +104,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+//		if() { 
+//			
+//	}
 	}
 
 	/**
