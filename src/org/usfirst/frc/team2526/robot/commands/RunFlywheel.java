@@ -5,10 +5,11 @@ import org.usfirst.frc.team2526.robot.Robot;
 
 public class RunFlywheel extends Command {
 
-	private int rpm = 3000;
+	private int rpm;
 	
-	public RunFlywheel() {
+	public RunFlywheel(int rpm) {
 		// Use requires() here to declare subsystem dependencies
+		this.rpm = rpm;
 		requires(Robot.flywheel);
 	}
 

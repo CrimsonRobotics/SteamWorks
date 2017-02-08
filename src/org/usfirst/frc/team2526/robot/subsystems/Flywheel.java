@@ -5,9 +5,6 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Flywheel extends Subsystem {
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
-	
 	
 	private CANTalon fwTalon;
 		
@@ -16,7 +13,6 @@ public class Flywheel extends Subsystem {
 	public Flywheel(int fwID, PID gains) {
 		fwTalon = new CANTalon(fwID);
 		
-		fwTalon.reset();
 		
 		gainsFW = gains;
 		

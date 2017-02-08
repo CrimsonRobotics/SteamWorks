@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2526.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
 import org.usfirst.frc.team2526.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
 
@@ -70,7 +71,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
