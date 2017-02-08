@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2526.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -10,12 +11,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class GearIntake extends Subsystem {
 	private DoubleSolenoid left, right;
 	private Solenoid plate;
+	private DigitalInput dropGearSensor;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public GearIntake(int DS_L_One, int DS_L_Two, int DS_R_One, int DS_R_Two, int SS_P) {
+	public GearIntake(int DS_L_One, int DS_L_Two, int DS_R_One, int DS_R_Two, int SS_P, int D_G_S) {
 		left = new DoubleSolenoid(DS_L_One, DS_L_Two); //Gear release
 		right = new DoubleSolenoid(DS_R_One, DS_R_Two); //Gear release
-		plate= new Solenoid(SS_P); //Gear vs Ball ntake
+		plate= new Solenoid(SS_P); //Gear vs Ball intake
+		dropGearSensor = new DigitalInput(D_G_S);
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -31,5 +34,6 @@ public class GearIntake extends Subsystem {
     public void switchtoBall() {
     	plate.set(false);
     }
+    
 }
 
