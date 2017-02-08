@@ -31,7 +31,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		gearintake = new GearIntake(RobotMap.DS_L_One, RobotMap.DS_L_Two, RobotMap.DS_R_One, RobotMap.DS_R_Two, RobotMap.SS_P);
+		gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
 		oi = new OI();
 //		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());

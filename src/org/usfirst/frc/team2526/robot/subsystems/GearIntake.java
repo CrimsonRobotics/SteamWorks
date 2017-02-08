@@ -14,11 +14,11 @@ public class GearIntake extends Subsystem {
 	private DigitalInput dropGearSensor;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public GearIntake(int DS_L_One, int DS_L_Two, int DS_R_One, int DS_R_Two, int SS_P, int D_G_S) {
-		left = new DoubleSolenoid(DS_L_One, DS_L_Two); //Gear release
-		right = new DoubleSolenoid(DS_R_One, DS_R_Two); //Gear release
+	public GearIntake(int DS_L_ONE, int DS_L_TWO, int DS_R_ONE, int DS_R_TWO, int SS_P, int D_G_S) {
+		left = new DoubleSolenoid(DS_L_ONE, DS_L_TWO); //Gear release
+		right = new DoubleSolenoid(DS_R_ONE, DS_R_TWO); //Gear release
 		plate= new Solenoid(SS_P); //Gear vs Ball intake
-		dropGearSensor = new DigitalInput(D_G_S);
+		dropGearSensor = new DigitalInput(D_G_S);//sensor that when triggered, will drop gear
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
