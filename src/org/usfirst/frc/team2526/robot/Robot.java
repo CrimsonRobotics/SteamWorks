@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.Climber;
+import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
 import com.ctre.CANTalon;
 
 /**
@@ -24,6 +25,8 @@ public class Robot extends IterativeRobot {
 	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.driveTrainFrontLeft, RobotMap.driveTrainBackLeft, RobotMap.driveTrainFrontRight, RobotMap.driveTrainBackRight);
 	//Climber Subsystem
   public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
+  //Flywheel Subsystem
+  public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.GAINS_FLYWHEEL);
   //AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
