@@ -1,6 +1,6 @@
 package com.crimsonrobotics.lib;
 
-public class PID {
+public class PID{
 	public double p = 0; //Default Proportional gain
 	public double i = 0; //Default Integral gain
 	public double d = 0; //Default derivative gain
