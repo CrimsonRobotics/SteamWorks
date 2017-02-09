@@ -1,23 +1,37 @@
 package org.usfirst.frc.team2526.robot;
 
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
+import com.crimsonrobotics.lib.PID;
+
 public class RobotMap {
-  public static final int CLIMBER_MOTOR = 0;
-	public static final int driveTrainFrontLeft = 9;
-	public static final int driveTrainFrontRight = 2;
-	public static final int driveTrainBackLeft = 1;
-	public static final int driveTrainBackRight = 8;
-  public static final int elevatorBottom = 9;
+	/*
+	 * Climber CAN ID
+	 */
+	public static final int CLIMBER_MOTOR = 0;
+	/*
+	 * Drivetrain CAN IDs
+	 */
+	public static final int DRIVETRAIN_FRONTLEFT = 9;
+	public static final int DRIVETRAIN_FRONTRIGHT = 2;
+	public static final int DRIVETRAIN_BACKLEFT = 1;
+	public static final int DRIVETRAIN_BACKRIGHT = 8;
+	/*
+	 * Elevator CAN IDs
+	 */
+	public static final int elevatorBottom = 9;
 	public static final int elevatorMiddle = 8;
+	/*
+	 * Intake CAN IDs
+	 */
 	public static final int intakeRight = 7;
-  public static final int FLYWHEEL_TALON = 11;
+	/*
+	 * Flywheel CAN IDs and PID gains
+	 */
+	public static final int FLYWHEEL_TALON = 11;
 	public static final PID GAINS_FLYWHEEL = new PID(1,0,0);
-  public static int DS_L_ONE; //Double Solenoid Left
+	/*
+	 * Gear placer Solenoids, PCM, and switch
+	 */
+	public static int DS_L_ONE; //Double Solenoid Left
 	public static int DS_L_TWO; //Double Solenoid Left
 	public static int DS_R_ONE; //Double Solenoid Right
 	public static int DS_R_TWO; //Double Solenoid Right
