@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2526.robot.subsystems.BallIntake;
 import org.usfirst.frc.team2526.robot.subsystems.Climber;
 import com.ctre.CANTalon;
 
@@ -23,8 +24,10 @@ public class Robot extends IterativeRobot {
 	//DriveTrain Subsystem
 	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.driveTrainFrontLeft, RobotMap.driveTrainBackLeft, RobotMap.driveTrainFrontRight, RobotMap.driveTrainBackRight);
 	//Climber Subsystem
-  public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
-  //AutonomousCommand
+	public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
+  	//Ball intake subsystem
+	public static final BallIntake ballintake = new BallIntake(RobotMap.INTAKE_TOP, RobotMap.INTAKE_BOTTOM, RobotMap.INTAKE_GAINS_TOP, RobotMap.INTAKE_GAINS_BOTTOM);
+	//AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
