@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.Climber;
 import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
-import com.ctre.CANTalon;
+import org.usfirst.frc.team2526.robot.subsystems.Turret;
+import com.ctre.CANTalon
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,16 +29,14 @@ public class Robot extends IterativeRobot {
 	public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
 	//Flywheel Subsystem
 	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.GAINS_FLYWHEEL);
+  //Turret Subsystem
+  public static final Turret turret = new Turret(RobotMap.TURRET_TALON, RobotMap.GAINS_TURRET);
 	//Gearplacer Subsystem
 	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
 	//AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
+	
 	@Override
 	public void robotInit() {
 		// chooser.addObject("My Auto", new MyAutoCommand());
