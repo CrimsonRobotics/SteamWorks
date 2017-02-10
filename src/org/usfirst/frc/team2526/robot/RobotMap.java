@@ -37,4 +37,9 @@ public class RobotMap {
 	public static int DS_R_TWO; //Double Solenoid Right
 	public static int SS_P; //Single Solenoid Platear
 	public static int D_G_S; //Drop Gear Sensor
+	/*
+	 * Turret Talons and PID gains.
+	 */
+	public static final int TURRET_TALON = 11;
+	public static final PID GAINS_TURRET = new PID(1,0,0);
 }
