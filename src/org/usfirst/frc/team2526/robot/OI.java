@@ -15,7 +15,15 @@ public class OI {
 	private Joystick driverLeft = new Joystick(0);
 	private Joystick driverRight = new Joystick(1);
 	private Joystick coDriver = new Joystick(2);
+	private Button GearDrop = new JoystickButton(coDriver, 1);
+	private Button SwitchToBall = new JoystickButton(coDriver, 2);
+	private Button SwitchToGear = new JoystickButton(coDriver, 3);
 	
+	public OI(){
+		GearDrop.whenPressed(new GearIntakeDrop());
+		SwitchToBall.whenPressed(new GameSelectorBalls());
+		SwitchToGear.whenPressed(new GameSelectorGear());
+	}
 	public Joystick getDriverLeft(){
 		return driverLeft;
 	}
@@ -25,16 +33,4 @@ public class OI {
 	public Joystick getCoDriver(){
 		return coDriver;
 	}
-	
-	Button GearDrop = new JoystickButton(coDriver, 1);
-	Button SwitchToBall = new JoystickButton(coDriver, 2);
-	Button SwitchToGear = new JoystickButton(coDriver, 3);
-
-
-public OI() {
- GearDrop.whenPressed(new GearIntakeDrop());
- SwitchToBall.whenPressed(new GameSelectorBalls());
- SwitchToGear.whenPressed(new GameSelectorGear());
-}
-
 }

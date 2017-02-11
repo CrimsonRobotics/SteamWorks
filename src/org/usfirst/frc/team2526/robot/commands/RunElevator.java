@@ -9,12 +9,12 @@ import org.usfirst.frc.team2526.robot.subsystems.Elevator;
  *
  */
 public class RunElevator extends Command {
-	private int rpm = 3000;
+	private int rpm;
 	Elevator elevator;
 	
 	
-	public RunElevator() {
-		// Use requires() here to declare subsystem dependencies
+	public RunElevator(int rpm) {
+		this.rpm = rpm;
 		requires(Robot.elevator);
 	}
 

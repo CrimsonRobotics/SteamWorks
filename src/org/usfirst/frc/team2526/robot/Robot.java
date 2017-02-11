@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2526.robot.subsystems.Elevator;
 import org.usfirst.frc.team2526.robot.subsystems.Climber;
 import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
 import org.usfirst.frc.team2526.robot.subsystems.Turret;
@@ -32,6 +33,8 @@ public class Robot extends IterativeRobot {
 	public static final Turret turret = new Turret(RobotMap.TURRET_TALON, RobotMap.GAINS_TURRET);
 	//Gearplacer Subsystem
 	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
+	//Elevator Subsystem
+	public static Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_PID_GAINS);
 	//AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();

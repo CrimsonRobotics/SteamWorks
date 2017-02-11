@@ -15,10 +15,11 @@ public class RobotMap {
 	public static final int DRIVETRAIN_BACKLEFT = 1;
 	public static final int DRIVETRAIN_BACKRIGHT = 8;
 	/*
-	 * Elevator CAN IDs
+	 * Elevator CAN IDs and PID gains
 	 */
 	public static final int ELEVATOR_BOTTOM = 9;
 	public static final int ELEVATOR_TOP = 8;
+	public static final PID ELEVATOR_PID_GAINS = new PID(1,0,0);
 	/*
 	 * Intake CAN IDs
 	 */
