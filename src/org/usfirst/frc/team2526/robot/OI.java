@@ -1,6 +1,12 @@
 package org.usfirst.frc.team2526.robot;
 
+import org.usfirst.frc.team2526.robot.commands.GameSelectorBalls;
+import org.usfirst.frc.team2526.robot.commands.GameSelectorGear;
+import org.usfirst.frc.team2526.robot.commands.GearIntakeDrop;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -19,4 +25,16 @@ public class OI {
 	public Joystick getCoDriver(){
 		return coDriver;
 	}
+	
+	Button GearDrop = new JoystickButton(coDriver, 1);
+	Button SwitchToBall = new JoystickButton(coDriver, 2);
+	Button SwitchToGear = new JoystickButton(coDriver, 3);
+
+
+public OI() {
+ GearDrop.whenPressed(new GearIntakeDrop());
+ SwitchToBall.whenPressed(new GameSelectorBalls());
+ SwitchToGear.whenPressed(new GameSelectorGear());
+}
+
 }

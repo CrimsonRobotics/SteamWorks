@@ -1,9 +1,7 @@
 package org.usfirst.frc.team2526.robot.subsystems;
 
-
 import com.crimsonrobotics.lib.PID;
 import com.ctre.CANTalon;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -75,5 +73,3 @@ public class Elevator extends Subsystem {
 		elevatorMiddle.set(0);
 	}
 }
-
-
