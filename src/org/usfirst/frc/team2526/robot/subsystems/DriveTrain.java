@@ -6,7 +6,6 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem {
 	private CANTalon fL; //Front Left Motor
@@ -36,9 +35,7 @@ public class DriveTrain extends Subsystem {
 		fL.setPID(gainsLeft.p, gainsLeft.i, gainsLeft.d, gainsLeft.f, gainsLeft.iZone, gainsLeft.rampRate, gainsLeft.profile);
 		fR.setPID(gainsRight.p, gainsRight.i, gainsRight.d, gainsRight.f, gainsRight.iZone, gainsRight.rampRate, gainsRight.profile);
 		fL.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		fL.configEncoderCodesPerRev(360);
 		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		fR.configEncoderCodesPerRev(360);
 	}
 	protected void initDefaultCommand() {
 		setDefaultCommand(new TeleopDrive());
@@ -48,7 +45,7 @@ public class DriveTrain extends Subsystem {
 	 * @param Right joystick of the driver which controls forward and backwards motion.
 	 */
 	public void teleopCraneDrive(Joystick left, Joystick right){
-		drive.arcadeDrive(left.getX(), right.getY());
+		drive.arcadeDrive(right.getY(), left.getX());
 	}
 	/*
 	 * @param Speed in rotations per minute (rpm) for the left side.
@@ -56,23 +53,9 @@ public class DriveTrain extends Subsystem {
 	 */
 	public void speedDrive(int speedLeft, int speedRight){
 		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
-		setSpeedLeft(speedLeft);
-		setSpeedRight(speedRight);
-	}
-	/*
-	 * @param Desired speed in rotations per minute (RPM).
-	 */
-	private void setSpeedLeft(int speedLeft){
-		fL.reverseSensor(true);
 		fL.enable();
-		fL.set(speedLeft);
-	}
-	/*
-	 * @param Desired speed in rotations per minute (RPM).
-	 */
-	private void setSpeedRight(int speedRight){
-		fR.reverseOutput(true);
 		fR.enable();
+		fL.set(speedLeft);
 		fR.set(speedRight);
 	}
 	/*
@@ -98,9 +81,5 @@ public class DriveTrain extends Subsystem {
 	private void changeLeaderControlMode(CANTalon.TalonControlMode mode){
 		fL.changeControlMode(mode);
 		fR.changeControlMode(mode);
-	}
-	public void outputSpeedsToDebug(){
-		SmartDashboard.putNumber("Speed Left(RPM):", fL.getSpeed());
-		SmartDashboard.putNumber("Speed Right(RPM):", fR.getSpeed());
 	}
 }

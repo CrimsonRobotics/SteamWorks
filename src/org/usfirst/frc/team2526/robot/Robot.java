@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team2526.robot.commands.test.SpeedDriveCommand;
 import org.usfirst.frc.team2526.robot.subsystems.Climber;
 import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
 import org.usfirst.frc.team2526.robot.subsystems.Turret;
@@ -24,9 +23,7 @@ public class Robot extends IterativeRobot {
 	//Controls
 	public static OI oi = new OI();
 	//DriveTrain Subsystem
-	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.DRIVETRAIN_FRONTLEFT, 
-			RobotMap.DRIVETRAIN_BACKLEFT, RobotMap.DRIVETRAIN_FRONTRIGHT, RobotMap.DRIVETRAIN_BACKRIGHT, 
-			RobotMap.DRIVETRAIN_GAINS_LEFT, RobotMap.DRIVETRAIN_GAINS_RIGHT);
+	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.DRIVETRAIN_FRONTLEFT, RobotMap.DRIVETRAIN_BACKLEFT, RobotMap.DRIVETRAIN_FRONTRIGHT, RobotMap.DRIVETRAIN_BACKRIGHT);
 	//Climber Subsystem
 	public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
 	//Flywheel Subsystem
@@ -74,6 +71,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
+
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -110,6 +108,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+
 	}
 
 	/**

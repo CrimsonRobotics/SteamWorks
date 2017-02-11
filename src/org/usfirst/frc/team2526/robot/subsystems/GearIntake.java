@@ -27,7 +27,11 @@ public class GearIntake extends Subsystem {
     public void dropGear() {
     	left.set(DoubleSolenoid.Value.kForward);
     	right.set(DoubleSolenoid.Value.kForward);
-    	}
+    }
+    public void closeGearIntake() {
+    	left.set(DoubleSolenoid.Value.kReverse);
+    	right.set(DoubleSolenoid.Value.kReverse);
+    }
     public void switchtoGear() {
     	plate.set(true);
     }
