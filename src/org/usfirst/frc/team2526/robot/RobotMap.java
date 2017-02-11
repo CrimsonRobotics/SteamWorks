@@ -33,11 +33,11 @@ public class RobotMap {
 	 * Gear placer Solenoids, PCM, and switch
 	 */
 	
-	public static final int DS_L_ONE = 0; //Double Solenoid Left
-	public static final int DS_L_TWO = 1; //Double Solenoid Left
-	public static final int DS_R_ONE = 2; //Double Solenoid Right
-	public static final int DS_R_TWO = 3; //Double Solenoid Right
-	public static final int SS_P = 4; //Single Solenoid Plate
+	public static final int DS_L_ONE = 1; //Double Solenoid Left
+	public static final int DS_L_TWO = 2; //Double Solenoid Left
+	public static final int DS_R_ONE = 3; //Double Solenoid Right
+	public static final int DS_R_TWO = 4; //Double Solenoid Right
+	public static final int SS_P = 0; //Single Solenoid Plate
 	public static final int D_G_S = 5; //Drop Gear Sensor
 
 	/*

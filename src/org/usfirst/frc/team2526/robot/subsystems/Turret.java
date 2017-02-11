@@ -25,7 +25,7 @@ public class Turret extends Subsystem {
 	}
 	public void initDefaultCommand() {
 	}
-	//According to Alex H. the turret will have ~350° of movement
+	//According to Alex H. the turret will have ~350 degrees of movement
 	public void runTurret(int position){
 		turretTalon.set(position);
 	}
