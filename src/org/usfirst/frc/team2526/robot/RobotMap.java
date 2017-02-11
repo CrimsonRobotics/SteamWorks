@@ -17,8 +17,8 @@ public class RobotMap {
 	/*
 	 * Elevator CAN IDs
 	 */
-	public static final int elevatorBottom = 9;
-	public static final int elevatorMiddle = 8;
+	public static final int ELEVATOR_BOTTOM = 9;
+	public static final int ELEVATOR_TOP = 8;
 	/*
 	 * Intake CAN IDs
 	 */
@@ -44,5 +44,4 @@ public class RobotMap {
 	 */
 	public static final int TURRET_TALON = 11;
 	public static final PID GAINS_TURRET = new PID(1,0,0);
-
 }
