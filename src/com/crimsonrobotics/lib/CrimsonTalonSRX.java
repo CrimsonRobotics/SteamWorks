@@ -69,6 +69,13 @@ public class CrimsonTalonSRX extends CANTalon{
 		super.enable();
 	}
 	/*
+	 * @param Percent voltage for percentVbus control.
+	 */
+	public void setVbus(int percentVoltage){
+		super.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		super.set(percentVoltage);
+	}
+	/*
 	 * This method changes the control of the Talon to PercentVbus so it can be used with RobotDrive.
 	 */
 	public void changePercentVbus(){
