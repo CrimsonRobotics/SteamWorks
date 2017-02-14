@@ -21,6 +21,7 @@ import org.usfirst.frc.team2526.robot.subsystems.Turret;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
 	//Controls
 	public static OI oi = new OI();
 	//DriveTrain Subsystem
@@ -32,7 +33,7 @@ public class Robot extends IterativeRobot {
 	//Turret Subsystem
 	public static final Turret turret = new Turret(RobotMap.TURRET_TALON, RobotMap.GAINS_TURRET);
 	//Gearplacer Subsystem
-	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
+	
 	//Elevator Subsystem
 	public static Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_PID_GAINS);
 	//AutonomousCommand
