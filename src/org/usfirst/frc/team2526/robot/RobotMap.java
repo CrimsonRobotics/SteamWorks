@@ -6,14 +6,17 @@ public class RobotMap {
 	/*
 	 * Climber CAN ID
 	 */
-	public static final int CLIMBER_MOTOR = 0;
+	public static final int CLIMBER_MOTOR = 11;
 	/*
-	 * Drivetrain CAN IDs
+	 * Drivetrain CAN IDs and PID gains.
+	 * Gains (1.2, 0.001, 6, 1.1, 20, 0, 0)
 	 */
-	public static final int DRIVETRAIN_FRONTLEFT = 9;
-	public static final int DRIVETRAIN_FRONTRIGHT = 2;
-	public static final int DRIVETRAIN_BACKLEFT = 1;
-	public static final int DRIVETRAIN_BACKRIGHT = 8;
+	public static final int DRIVETRAIN_FRONTLEFT = 8;
+	public static final int DRIVETRAIN_FRONTRIGHT = 9;
+	public static final int DRIVETRAIN_BACKLEFT = 2;
+	public static final int DRIVETRAIN_BACKRIGHT = 1;
+	public static final PID DRIVETRAIN_GAINS_LEFT = new PID(0, 0, 0, 1.1, 0, 0, 0);
+	public static final PID DRIVETRAIN_GAINS_RIGHT = new PID(0, 0, 0, 1.1, 0, 0, 0);
 	/*
 	 * Elevator CAN IDs and PID gains
 	 */

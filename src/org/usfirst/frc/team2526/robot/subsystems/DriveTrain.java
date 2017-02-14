@@ -3,9 +3,12 @@ package org.usfirst.frc.team2526.robot.subsystems;
 import org.usfirst.frc.team2526.robot.commands.TeleopDrive;
 import com.crimsonrobotics.lib.PID;
 import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem {
 	private CANTalon fL; //Front Left Motor
@@ -35,7 +38,11 @@ public class DriveTrain extends Subsystem {
 		fL.setPID(gainsLeft.p, gainsLeft.i, gainsLeft.d, gainsLeft.f, gainsLeft.iZone, gainsLeft.rampRate, gainsLeft.profile);
 		fR.setPID(gainsRight.p, gainsRight.i, gainsRight.d, gainsRight.f, gainsRight.iZone, gainsRight.rampRate, gainsRight.profile);
 		fL.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		fL.configEncoderCodesPerRev(360);
 		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		fR.configEncoderCodesPerRev(360);
+		fR.reverseSensor(true);
+		fL.reverseOutput(true);
 	}
 	protected void initDefaultCommand() {
 		setDefaultCommand(new TeleopDrive());
@@ -55,8 +62,8 @@ public class DriveTrain extends Subsystem {
 		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
 		fL.enable();
 		fR.enable();
-		fL.set(speedLeft);
 		fR.set(speedRight);
+		fL.set(speedLeft);
 	}
 	/*
 	 * @param Percent voltage for the left side of the drive train -1 to 1 scale.
@@ -81,5 +88,9 @@ public class DriveTrain extends Subsystem {
 	private void changeLeaderControlMode(CANTalon.TalonControlMode mode){
 		fL.changeControlMode(mode);
 		fR.changeControlMode(mode);
+	}
+	public void printSpeedToDebug(){
+		DriverStation.getInstance().reportError("Speed Left:" + fL.getSpeed() + "Error Left:" + fL.getError(), false);
+		DriverStation.getInstance().reportError("Speed Right:" + fR.getSpeed() + "Error Right:" + fR.getError(), false);
 	}
 }
