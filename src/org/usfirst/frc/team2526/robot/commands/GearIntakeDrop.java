@@ -16,19 +16,11 @@ public class GearIntakeDrop extends Command { //TEST COMMAND
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.gearintake.dropGear();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearintake.dropGear();
-    	try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	Robot.gearintake.closeGearIntake();
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -38,10 +30,12 @@ public class GearIntakeDrop extends Command { //TEST COMMAND
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.gearintake.closeGearIntake();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.gearintake.closeGearIntake();
     }
 }

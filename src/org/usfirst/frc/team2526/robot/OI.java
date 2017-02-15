@@ -20,7 +20,7 @@ public class OI {
 	private Button SwitchToGear = new JoystickButton(coDriver, 3);
 	
 	public OI(){
-		GearDrop.whenPressed(new GearIntakeDrop());
+		GearDrop.whileHeld(new GearIntakeDrop());
 		SwitchToBall.whenPressed(new GameSelectorBalls());
 		SwitchToGear.whenPressed(new GameSelectorGear());
 	}
