@@ -10,7 +10,7 @@ import org.usfirst.frc.team2526.robot.Robot;
 public class StopHopper extends Command {
 	public StopHopper() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.exampleSubsystem);
+		requires(Robot.hopper);
 	}
 
 	// Called just before this Command runs the first time
@@ -21,6 +21,7 @@ public class StopHopper extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		Robot.hopper.disableHopper();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
