@@ -23,4 +23,4 @@ public class Hopper extends Subsystem {
 		top.set(0);
 		bottom.set(0);
 	}
-}
+}	
