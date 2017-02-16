@@ -31,6 +31,7 @@ public class RobotMap {
 	 * Flywheel CAN IDs and PID gains
 	 */
 	public static final int FLYWHEEL_TALON = 11;
+	public static final int FLYWHEEL_TALON_FOLLOWER = 130;
 	public static final PID GAINS_FLYWHEEL = new PID(1,0,0);
 	/*
 	 * Gear placer Solenoids, PCM, and switch

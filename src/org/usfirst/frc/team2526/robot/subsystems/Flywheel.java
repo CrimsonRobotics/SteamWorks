@@ -5,11 +5,15 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Flywheel extends Subsystem {
-	private CANTalon fwTalon;	
+	private CANTalon fwTalon;
+	private CANTalon fwTalonFollower;
 	private PID gainsFW;
 	
-	public Flywheel(int fwID, PID gains) {
+	public Flywheel(int fwID, int fwFollowerID, PID gains) {
 		fwTalon = new CANTalon(fwID);
+		fwTalonFollower = new CANTalon(fwFollowerID);
+		fwTalonFollower.changeControlMode(CANTalon.TalonControlMode.Follower);
+		fwTalonFollower.set(fwTalon.getDeviceID());
 		gainsFW = gains;
 		fwTalon.configEncoderCodesPerRev(360);
 		fwTalon.setPosition(0);

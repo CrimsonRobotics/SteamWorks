@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 	//Climber Subsystem
 	public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
 	//Flywheel Subsystem
-	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.GAINS_FLYWHEEL);
+	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.FLYWHEEL_TALON_FOLLOWER, RobotMap.GAINS_FLYWHEEL);
 	//Turret Subsystem
 	public static final Turret turret = new Turret(RobotMap.TURRET_TALON, RobotMap.GAINS_TURRET);
 	//Gearplacer Subsystem
