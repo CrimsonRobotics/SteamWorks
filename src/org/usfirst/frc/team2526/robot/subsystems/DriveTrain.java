@@ -58,7 +58,7 @@ public class DriveTrain extends Subsystem {
 	 * @param Speed in rotations per minute (rpm) for the left side.
 	 * @param Speed in rotations per minute (rpm) for the right side.
 	 */
-	public void speedDrive(int speedLeft, int speedRight){
+	public void speedDrive(double speedLeft, double speedRight){
 		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
 		fL.enable();
 		fR.enable();
