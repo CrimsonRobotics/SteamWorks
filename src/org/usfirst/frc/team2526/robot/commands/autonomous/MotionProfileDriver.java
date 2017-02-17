@@ -17,7 +17,6 @@ public class MotionProfileDriver extends Command {
 	private double CORRECTION_FACTOR = 12;
 	private double inchesPerMeter = 39.37;
 	private double wheelInches = 0;
-	private double RPM_MAX = 250;
 	
 	public MotionProfileDriver(String pathLeft, String pathRight, String pathCenter, double wheelInches){
 		requires(Robot.driveTrain);
@@ -56,7 +55,7 @@ public class MotionProfileDriver extends Command {
 	}
 	private double calculateRPM(double velocity){
 		double inchesPerSecond = velocity * inchesPerMeter;
-		double inchesPerRevolution = 4 * Math.PI;
+		double inchesPerRevolution = wheelInches * Math.PI;
 		double rpm = (inchesPerSecond * 60) / inchesPerRevolution;
 		return rpm;
 	}
