@@ -29,10 +29,10 @@ public class Robot extends IterativeRobot {
 	public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro(Port.kOnboardCS0);
 	//GearIntake
 	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
-	//BallIntake subsystem
-	public static final BallIntake intake = new BallIntake(RobotMap.INTAKE);
 	//Controls
 	public static OI oi = new OI();
+	//BallIntake subsystem
+	public static final BallIntake intake = new BallIntake(RobotMap.INTAKE);
 	//DriveTrain Subsystem
 	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.DRIVETRAIN_FRONTLEFT, RobotMap.DRIVETRAIN_BACKLEFT, RobotMap.DRIVETRAIN_FRONTRIGHT, RobotMap.DRIVETRAIN_BACKRIGHT);
 	//Climber Subsystem
