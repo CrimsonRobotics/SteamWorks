@@ -52,7 +52,7 @@ public class DriveTrain extends Subsystem {
 	 * @param Right joystick of the driver which controls forward and backwards motion.
 	 */
 	public void teleopCraneDrive(Joystick left, Joystick right){
-		drive.arcadeDrive(right.getY(), left.getX());
+		drive.arcadeDrive(left.getY(), -right.getX());
 	}
 	/*
 	 * @param Speed in rotations per minute (rpm) for the left side.
