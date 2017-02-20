@@ -19,4 +19,7 @@ public class IntakeCommand extends Command {
 	protected void end() {
 		Robot.intake.disable();
 	}
+	protected void interrupted() {
+		Robot.intake.disable();
+	}
 }
