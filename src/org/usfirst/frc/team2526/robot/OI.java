@@ -24,7 +24,7 @@ public class OI {
 		GearDrop.whileHeld(new GearIntakeDrop());
 		SwitchToBall.whenPressed(new GameSelectorBalls());
 		SwitchToGear.whenPressed(new GameSelectorGear());
-		intake.whileHeld(new IntakeCommand());
+		intake.whenPressed(new IntakeCommand());
 	}
 	public Joystick getDriverLeft(){
 		return driverLeft;
