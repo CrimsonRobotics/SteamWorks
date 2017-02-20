@@ -49,4 +49,12 @@ public class RobotMap {
 	 */
 	public static final int TURRET_TALON = 11;
 	public static final PID GAINS_TURRET = new PID(0,0,0);
+	/*
+	 * Motion profile curve base directory and names
+	 */
+	public static final String BASE_DIR = "/tmp/";
+	public static final String AUTONOMOUS_MODE_ONE = "AutonomousOne";
+	public static final String CURVE_LEFT = "Left";
+	public static final String CURVE_CENTER = "Center";
+	public static final String CURVE_RIGHT = "Right";
 }

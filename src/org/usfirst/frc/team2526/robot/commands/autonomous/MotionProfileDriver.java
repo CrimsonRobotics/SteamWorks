@@ -1,9 +1,7 @@
 package org.usfirst.frc.team2526.robot.commands.autonomous;
 
 import java.io.File;
-
 import org.usfirst.frc.team2526.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
