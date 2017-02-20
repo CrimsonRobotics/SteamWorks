@@ -26,7 +26,7 @@ public class RobotMap {
 	/*
 	 * Intake CAN IDs
 	 */
-	public static final int intakeRight = 6;
+	public static final int INTAKE = 6;
 	/*
 	 * Flywheel CAN IDs and PID gains
 	 */
