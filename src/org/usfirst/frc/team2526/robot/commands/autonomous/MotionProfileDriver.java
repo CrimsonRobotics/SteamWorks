@@ -28,6 +28,11 @@ public class MotionProfileDriver extends Command {
 		trajectoryCenter = Pathfinder.readFromCSV(curveFileCenter);
 		this.wheelInches = wheelInches;
 	}
+	public MotionProfileDriver(Trajectory trajectoryLeft, Trajectory trajectoryCenter, Trajectory trajectorRight){
+		this.trajectoryLeft = trajectoryLeft;
+		this.trajectoryCenter = trajectoryCenter;
+		this.trajectoryRight = trajectoryRight;
+	}
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize(){
