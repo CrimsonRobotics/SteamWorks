@@ -6,31 +6,31 @@ public class RobotMap {
 	/*
 	 * Climber CAN ID
 	 */
-	public static final int CLIMBER_MOTOR = 11;
+	public static final int CLIMBER_MOTOR = 1;
 	/*
 	 * Drivetrain CAN IDs and PID gains.
 	 * Gains (1.2, 0.001, 6, 1.1, 20, 0, 0)
 	 */
-	public static final int DRIVETRAIN_FRONTLEFT = 8;
-	public static final int DRIVETRAIN_FRONTRIGHT = 9;
-	public static final int DRIVETRAIN_BACKLEFT = 2;
-	public static final int DRIVETRAIN_BACKRIGHT = 1;
+	public static final int DRIVETRAIN_FRONTLEFT = 3;
+	public static final int DRIVETRAIN_FRONTRIGHT = 13;
+	public static final int DRIVETRAIN_BACKLEFT = 4;
+	public static final int DRIVETRAIN_BACKRIGHT = 11;
 	public static final PID DRIVETRAIN_GAINS_LEFT = new PID(0, 0, 0, 1.1, 0, 0, 0);
 	public static final PID DRIVETRAIN_GAINS_RIGHT = new PID(0, 0, 0, 1.1, 0, 0, 0);
 	/*
 	 * Elevator CAN IDs and PID gains
 	 */
-	public static final int ELEVATOR_BOTTOM = 9;
-	public static final int ELEVATOR_TOP = 8;
+	public static final int ELEVATOR_BOTTOM = 2;
+	public static final int ELEVATOR_TOP = 5;
 	public static final PID ELEVATOR_PID_GAINS = new PID(1,0,0);
 	/*
 	 * Intake CAN IDs
 	 */
-	public static final int intakeRight = 7;
+	public static final int intakeRight = 6;
 	/*
 	 * Flywheel CAN IDs and PID gains
 	 */
-	public static final int FLYWHEEL_TALON = 11;
+	public static final int FLYWHEEL_TALON = 110;
 	public static final int FLYWHEEL_TALON_FOLLOWER = 130;
 	public static final PID GAINS_FLYWHEEL = new PID(0.29,0.0001,10,0.035,0,0,1);//.29,.0001,10,0.035,0,0
 	/*
@@ -47,7 +47,7 @@ public class RobotMap {
 	/*
 	 * Turret Talons and PID gains.
 	 */
-	public static final int TURRET_TALON = 11;
+	public static final int TURRET_TALON = 7;
 	public static final PID GAINS_TURRET = new PID(0,0,0);
 	/*
 	 * Motion profile curve base directory and names
