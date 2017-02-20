@@ -24,9 +24,9 @@ public class Camera extends Subsystem {
 	static Double angle;
 	CANTalon turnMotor;
 
-	 public Camera() {
+	 public Camera(int turretMotor) {
 			table = NetworkTable.getTable("datatable");
-			turnMotor = new CANTalon(1);
+			turnMotor = new CANTalon(turretMotor);
 		}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
