@@ -18,6 +18,11 @@ public class RobotMap {
 	public static final PID DRIVETRAIN_GAINS_LEFT = new PID(0, 0, 0, 1.1, 0, 0, 0);
 	public static final PID DRIVETRAIN_GAINS_RIGHT = new PID(0, 0, 0, 1.1, 0, 0, 0);
 	/*
+	 * Shifter ID and channel.
+	 */
+	public static final int SHIFTER = 0;//PCM CAN ID
+	public static final int CHANNEL = 6;//nead real value
+	/*
 	 * Elevator CAN IDs and PID gains
 	 */
 	public static final int ELEVATOR_BOTTOM = 2;
