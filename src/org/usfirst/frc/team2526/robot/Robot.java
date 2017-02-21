@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
 	//Flywheel Subsystem
 	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.FLYWHEEL_TALON_FOLLOWER, RobotMap.GAINS_FLYWHEEL);
 	//Elevator Subsystem
-	public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_PID_GAINS);
+	public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_GAINS_BOTTOM, RobotMap.ELEVATOR_GAINS_TOP);
 	//AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
