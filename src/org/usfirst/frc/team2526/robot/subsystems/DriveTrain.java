@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2526.robot.subsystems;
 
+import org.usfirst.frc.team2526.robot.Robot;
 import org.usfirst.frc.team2526.robot.commands.TeleopDrive;
 import com.crimsonrobotics.lib.PID;
 import com.ctre.CANTalon;
@@ -52,6 +53,7 @@ public class DriveTrain extends Subsystem {
 	 * @param Right joystick of the driver which controls forward and backwards motion.
 	 */
 	public void teleopCraneDrive(Joystick left, Joystick right){
+		adjustRampRate(Robot.shifter.isShifted()? 1 : 12); //If robot is in second gear ramprate is 1 V/s else 12 V/s.
 		drive.arcadeDrive(left.getY(), -right.getX());
 	}
 	/*
@@ -88,6 +90,10 @@ public class DriveTrain extends Subsystem {
 	private void changeLeaderControlMode(CANTalon.TalonControlMode mode){
 		fL.changeControlMode(mode);
 		fR.changeControlMode(mode);
+	}
+	private void adjustRampRate(double rate){
+		fL.setVoltageRampRate(rate);
+		fR.setVoltageRampRate(rate);
 	}
 	public void printSpeedToDebug(){
 		DriverStation.getInstance().reportError("Speed Left:" + fL.getSpeed() + "Error Left:" + fL.getError(), false);

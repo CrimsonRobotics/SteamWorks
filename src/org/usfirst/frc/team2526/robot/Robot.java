@@ -45,8 +45,6 @@ public class Robot extends IterativeRobot {
 	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.FLYWHEEL_TALON_FOLLOWER, RobotMap.GAINS_FLYWHEEL);
 	//Elevator Subsystem
 	public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_PID_GAINS);
-	//Controls
-	public static OI oi = new OI();
 	//AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -133,3 +131,6 @@ public class Robot extends IterativeRobot {
 		LiveWindow.run();
 	}
 }
+	public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_PID_GAINS);
+	//Controls
+	public static OI oi = new OI();

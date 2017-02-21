@@ -7,39 +7,35 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Elevator extends Subsystem {
 	private CANTalon elevatorBottom;
 	private CANTalon elevatorTop;
-	private PID gainsElevator;
+	private PID gainsElevatorTop;
+	private PID gainsElevatorBottom;
 	
-	public Elevator(int ebID,int emID, PID gains){
+	public Elevator(int ebID,int emID, PID gainsTop, PID gainsBottom){
 		elevatorBottom = new CANTalon(ebID);
 		elevatorTop = new CANTalon(emID);
-		gainsElevator = gains;	
-		elevatorBottom.configEncoderCodesPerRev(360);
-		elevatorTop.configEncoderCodesPerRev(360);
-		elevatorBottom.setPosition(0);
-		elevatorTop.setPosition(0);
-		elevatorBottom.setSafetyEnabled(false);
-		elevatorTop.setSafetyEnabled(false);
+		gainsElevatorTop = gainsTop;
+		gainsElevatorBottom = gainsBottom;
 		elevatorBottom.reverseSensor(false);
 		elevatorTop.reverseSensor(false);
 		pidInit();
 	}
 	private void pidInit(){
-		elevatorBottom.setPID(gainsElevator.p, 
-							  gainsElevator.i, 
-							  gainsElevator.d,
-							  gainsElevator.f, 
-							  gainsElevator.iZone,
-							  gainsElevator.rampRate,
-							  gainsElevator.profile);
-		elevatorTop.setPID(gainsElevator.p,
-				              gainsElevator.i, 
-				              gainsElevator.d,
-				              gainsElevator.f,
-				              gainsElevator.iZone,
-				              gainsElevator.rampRate,
-				              gainsElevator.profile);
-		elevatorBottom.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
-		elevatorTop.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		elevatorBottom.setPID(gainsElevatorBottom.p, 
+							  gainsElevatorBottom.i, 
+							  gainsElevatorBottom.d,
+							  gainsElevatorBottom.f, 
+							  gainsElevatorBottom.iZone,
+							  gainsElevatorBottom.rampRate,
+							  gainsElevatorBottom.profile);
+		elevatorTop.setPID(gainsElevatorTop.p,
+							gainsElevatorTop.i, 
+				            gainsElevatorTop.d,
+				            gainsElevatorTop.f,
+				            gainsElevatorTop.iZone,
+				            gainsElevatorTop.rampRate,
+				            gainsElevatorTop.profile);
+		elevatorBottom.setFeedbackDevice(CANTalon.FeedbackDevice.PulseWidth);
+		elevatorTop.setFeedbackDevice(CANTalon.FeedbackDevice.PulseWidth);
 		elevatorBottom.changeControlMode(CANTalon.TalonControlMode.Speed);
 		elevatorTop.changeControlMode(CANTalon.TalonControlMode.Speed);
 		elevatorBottom.enable();
