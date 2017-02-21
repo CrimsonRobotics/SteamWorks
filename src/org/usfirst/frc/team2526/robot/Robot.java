@@ -27,8 +27,14 @@ import org.usfirst.frc.team2526.robot.subsystems.Turret;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	/*
+	 * SENSORS
+	 */
 	//Gyro
 	public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro(Port.kOnboardCS0);
+	/*
+	 * SUBSYSTEMS
+	 */
 	//GearIntake
 	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
 	//Turret Subsystem
@@ -45,8 +51,14 @@ public class Robot extends IterativeRobot {
 	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.FLYWHEEL_TALON_FOLLOWER, RobotMap.GAINS_FLYWHEEL);
 	//Elevator Subsystem
 	public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_GAINS_BOTTOM, RobotMap.ELEVATOR_GAINS_TOP);
+	/*
+	 * OI CONTROLS
+	 */
 	//OI
 	public static final OI oi = new OI();
+	/*
+	 * AUTONOMOUS AND SMARTDASHBOARD
+	 */
 	//AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
