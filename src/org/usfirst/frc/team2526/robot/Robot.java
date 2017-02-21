@@ -31,8 +31,6 @@ public class Robot extends IterativeRobot {
 	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
 	//Turret Subsystem
 	public static final Turret turret = new Turret(RobotMap.TURRET_TALON, RobotMap.GAINS_TURRET);
-	//Controls
-	public static OI oi = new OI();
 	//BallIntake subsystem
 	public static final BallIntake intake = new BallIntake(RobotMap.INTAKE);
 	//DriveTrain Subsystem
@@ -43,6 +41,8 @@ public class Robot extends IterativeRobot {
 	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.FLYWHEEL_TALON_FOLLOWER, RobotMap.GAINS_FLYWHEEL);
 	//Elevator Subsystem
 	public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_PID_GAINS);
+	//Controls
+	public static OI oi = new OI();
 	//AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
