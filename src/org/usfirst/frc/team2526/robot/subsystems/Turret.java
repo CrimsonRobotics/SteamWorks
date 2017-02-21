@@ -1,7 +1,12 @@
 package org.usfirst.frc.team2526.robot.subsystems;
 
+import org.usfirst.frc.team2526.robot.commands.RunTurretJoystick;
+import org.usfirst.frc.team2526.robot.commands.TeleopDrive;
+
 import com.crimsonrobotics.lib.PID;
 import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -24,9 +29,13 @@ public class Turret extends Subsystem {
 		turretTalon.enable();
 	}
 	public void initDefaultCommand() {
+		setDefaultCommand(new RunTurretJoystick());
 	}
 	//According to Alex H. the turret will have ~350 degrees of movement
 	public void runTurret(int position){
 		turretTalon.set(position);
+	}
+	public void turnTurretJoystick(Joystick stick) {
+		turretTalon.set(stick.getX());
 	}
 }
