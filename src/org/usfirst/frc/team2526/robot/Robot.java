@@ -1,6 +1,8 @@
 package org.usfirst.frc.team2526.robot;
 
 import org.usfirst.frc.team2526.robot.subsystems.GearIntake;
+import org.usfirst.frc.team2526.robot.subsystems.Shifter;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI.Port;
@@ -35,6 +37,8 @@ public class Robot extends IterativeRobot {
 	public static final BallIntake intake = new BallIntake(RobotMap.INTAKE);
 	//DriveTrain Subsystem
 	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.DRIVETRAIN_FRONTLEFT, RobotMap.DRIVETRAIN_BACKLEFT, RobotMap.DRIVETRAIN_FRONTRIGHT, RobotMap.DRIVETRAIN_BACKRIGHT);
+	//Shifter Subsystem
+	public static final Shifter shifter = new Shifter(RobotMap.SHIFTER,RobotMap.CHANNEL);
 	//Climber Subsystem
 	public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
 	//Flywheel Subsystem
