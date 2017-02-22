@@ -22,11 +22,11 @@ public class Camera extends Subsystem {
 
 	static ITable table;
 	static Double angle;
-	CANTalon turnMotor;
+	
 
-	 public Camera(int turretMotorID) {
+	 public Camera() {
 			table = NetworkTable.getTable("datatable");
-			turnMotor = new CANTalon(turretMotorID);
+			
 		}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -55,26 +55,6 @@ public class Camera extends Subsystem {
     	}else 
     		return false;
     }
-    public void turnWithCamera() {
- 	   double angleset = Robot.camera.getCameraAngle();
- 	   System.out.println("One" + angleset);
- 	   SmartDashboard.putNumber("Angle First", angleset);
- 	   while(angleset>1 || angleset<-1) {
- 		   angleset = Robot.camera.getCameraAngle();
- 		   if(angleset != 10000.0) {
- 		   System.out.println("Two" + angleset);
- 	   if(angleset>1)
- 		   turnMotor.set(.07);
- 	//	myDrive.drive(.5, .5);
- 	   else if(angleset<-1)
- 		  turnMotor.set(-.07);
- 		   //myDrive.drive(.5, -.5);
- 	   else if(angleset >= -1 && angleset <= 1)
- 		  turnMotor.set(0);
- 		  // myDrive.drive(0, 0);
- 		  
- 	   }
- 	   }
-    }
+    
 }
 
