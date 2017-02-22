@@ -27,8 +27,8 @@ public class RobotMap {
 	 */
 	public static final int ELEVATOR_BOTTOM = 2;
 	public static final int ELEVATOR_TOP = 5;
-	public static final PID ELEVATOR_GAINS_BOTTOM = new PID(0,0,0);
-	public static final PID ELEVATOR_GAINS_TOP = new PID(0,0,0);
+	public static final PID ELEVATOR_GAINS_BOTTOM = new PID(0,0,0,1);
+	public static final PID ELEVATOR_GAINS_TOP = new PID(0,0,0,1);
 	public static final int ELEVATOR_SPEED = 500;
 	/*
 	 * Intake CAN IDs
@@ -37,8 +37,8 @@ public class RobotMap {
 	/*
 	 * Flywheel CAN IDs and PID gains
 	 */
-	public static final int FLYWHEEL_TALON = 110;
-	public static final int FLYWHEEL_TALON_FOLLOWER = 130;
+	public static final int FLYWHEEL_TALON = 9;
+	public static final int FLYWHEEL_TALON_FOLLOWER = 8;
 	public static final PID GAINS_FLYWHEEL = new PID(0.29,0.0001,10,0.035,0,0,1);//.29,.0001,10,0.035,0,0
 	/*
 	 * Gear placer Solenoids, PCM, and switch
