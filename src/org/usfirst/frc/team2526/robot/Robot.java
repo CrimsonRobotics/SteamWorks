@@ -2,7 +2,6 @@ package org.usfirst.frc.team2526.robot;
 
 import org.usfirst.frc.team2526.robot.subsystems.GearIntake;
 import org.usfirst.frc.team2526.robot.subsystems.Shifter;
-
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI.Port;
@@ -11,13 +10,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team2526.robot.commands.TurnWithCamera;
+import org.usfirst.frc.team2526.robot.subsystem
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.Elevator;
 import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
 import org.usfirst.frc.team2526.robot.subsystems.BallIntake;
 import org.usfirst.frc.team2526.robot.subsystems.Climber;
 import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
-import org.usfirst.frc.team2526.robot.subsystems.Turret;
+import org.usfirst.frc.team2526.robot.subsystems.Turret
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,6 +36,8 @@ public class Robot extends IterativeRobot {
 	/*
 	 * SUBSYSTEMS
 	 */
+  //Camera
+  public static Camera camera = new Camera(1);
 	//GearIntake
 	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
 	//Turret Subsystem
@@ -106,8 +109,7 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		
 	}
 
 	/**
