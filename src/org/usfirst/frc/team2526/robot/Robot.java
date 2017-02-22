@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
   //Camera
   public static Camera camera = new Camera();
 	//GearIntake
-	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
+	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.SS_P, RobotMap.D_G_S);
 	//Turret Subsystem
 	public static final Turret turret = new Turret(RobotMap.TURRET_TALON, RobotMap.GAINS_TURRET,RobotMap.TURRET_TALON);
 	//BallIntake subsystem

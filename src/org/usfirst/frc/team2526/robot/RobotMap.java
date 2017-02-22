@@ -37,8 +37,8 @@ public class RobotMap {
 	/*
 	 * Flywheel CAN IDs and PID gains
 	 */
-	public static final int FLYWHEEL_TALON = 9;
-	public static final int FLYWHEEL_TALON_FOLLOWER = 8;
+	public static final int FLYWHEEL_TALON = 8;
+	public static final int FLYWHEEL_TALON_FOLLOWER = 9;
 	public static final PID GAINS_FLYWHEEL = new PID(0.29,0.0001,10,0.035,0,0,1);//.29,.0001,10,0.035,0,0
 	public static final int FLYWHEEL_BASE_SPEED = 3000; //RPM
 	/*
@@ -46,10 +46,10 @@ public class RobotMap {
 	 */
 	
 	public static final int DS_L_ONE = 1; //Double Solenoid Left
-	public static final int DS_L_TWO = 2; //Double Solenoid Left
-	public static final int DS_R_ONE = 3; //Double Solenoid Right
-	public static final int DS_R_TWO = 4; //Double Solenoid Right
-	public static final int SS_P = 0; //Single Solenoid Plate
+	public static final int DS_L_TWO = 2; //Double Solenoid Left ONE DS
+//	public static final int DS_R_ONE = 3; //Double Solenoid Right
+//	public static final int DS_R_TWO = 4; //Double Solenoid Right
+	public static final int SS_P = 3; //Single Solenoid Plate
 	public static final int D_G_S = 5; //Drop Gear Sensor
 
 	/*

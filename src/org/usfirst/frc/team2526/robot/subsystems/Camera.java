@@ -25,7 +25,7 @@ public class Camera extends Subsystem {
 	
 
 	 public Camera() {
-			table = NetworkTable.getTable("datatable");
+			//table = NetworkTable.getTable("datatable");
 			
 		}
     public void initDefaultCommand() {
