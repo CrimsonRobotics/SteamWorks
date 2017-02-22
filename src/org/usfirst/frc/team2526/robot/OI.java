@@ -18,7 +18,7 @@ public class OI {
 	private Joystick driverLeft = new Joystick(0);
 	private Joystick driverRight = new Joystick(1);
 	private Joystick coDriver = new Joystick(2);
-	//private Button GearDrop = new JoystickButton(coDriver, 1);
+	private Button GearDrop = new JoystickButton(coDriver, 10);
 	private Button SwitchToBall = new JoystickButton(coDriver, 2);
 	private Button SwitchToGear = new JoystickButton(coDriver, 3);
 	private Button intake = new JoystickButton(driverRight, 1);
@@ -26,7 +26,7 @@ public class OI {
 	private Button flywheel = new JoystickButton(coDriver, 1);
 	
 	public OI(){
-		//GearDrop.whileHeld(new GearIntakeDrop());
+		GearDrop.whileHeld(new GearIntakeDrop());
 		SwitchToBall.whenPressed(new GameSelectorBalls());
 		SwitchToGear.whenPressed(new GameSelectorGear());
 		intake.whileHeld(new IntakeCommand());
