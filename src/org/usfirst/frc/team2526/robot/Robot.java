@@ -1,17 +1,24 @@
-
 package org.usfirst.frc.team2526.robot;
 
+import org.usfirst.frc.team2526.robot.subsystems.GearIntake;
+import org.usfirst.frc.team2526.robot.subsystems.Shifter;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team2526.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2526.robot.commands.TurnWithCamera;
-import org.usfirst.frc.team2526.robot.subsystems.Camera;
-import org.usfirst.frc.team2526.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team2526.robot.subsystem
+import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2526.robot.subsystems.Elevator;
+import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
+import org.usfirst.frc.team2526.robot.subsystems.BallIntake;
+import org.usfirst.frc.team2526.robot.subsystems.Climber;
+import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
+import org.usfirst.frc.team2526.robot.subsystems.Turret
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,23 +28,46 @@ import org.usfirst.frc.team2526.robot.subsystems.ExampleSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static OI oi;
-	public static Camera camera;
-	
+	/*
+	 * SENSORS
+	 */
+	//Gyro
+	public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro(Port.kOnboardCS0);
+	/*
+	 * SUBSYSTEMS
+	 */
+  //Camera
+  public static Camera camera = new Camera(1);
+	//GearIntake
+	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.DS_R_ONE, RobotMap.DS_R_TWO, RobotMap.SS_P, RobotMap.D_G_S);
+	//Turret Subsystem
+	public static final Turret turret = new Turret(RobotMap.TURRET_TALON, RobotMap.GAINS_TURRET);
+	//BallIntake subsystem
+	public static final BallIntake intake = new BallIntake(RobotMap.INTAKE);
+	//DriveTrain Subsystem
+	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.DRIVETRAIN_FRONTLEFT, RobotMap.DRIVETRAIN_BACKLEFT, RobotMap.DRIVETRAIN_FRONTRIGHT, RobotMap.DRIVETRAIN_BACKRIGHT);
+	//Shifter Subsystem
+	public static final Shifter shifter = new Shifter(RobotMap.SHIFTER,RobotMap.CHANNEL);
+	//Climber Subsystem
+	public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
+	//Flywheel Subsystem
+	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.FLYWHEEL_TALON_FOLLOWER, RobotMap.GAINS_FLYWHEEL);
+	//Elevator Subsystem
+	public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_GAINS_BOTTOM, RobotMap.ELEVATOR_GAINS_TOP);
+	/*
+	 * OI CONTROLS
+	 */
+	//OI
+	public static final OI oi = new OI();
+	/*
+	 * AUTONOMOUS AND SMARTDASHBOARD
+	 */
+	//AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
+	
 	@Override
 	public void robotInit() {
-		camera = new Camera(1);
-		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
@@ -70,7 +100,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		
+		autonomousCommand = chooser.getSelected();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -106,6 +136,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+
 	}
 
 	/**
