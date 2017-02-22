@@ -6,6 +6,7 @@ import org.usfirst.frc.team2526.robot.commands.GearIntakeDrop;
 import org.usfirst.frc.team2526.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2526.robot.commands.RunElevator;
 import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
+import org.usfirst.frc.team2526.robot.commands.StopTurret;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -24,14 +25,18 @@ public class OI {
 	private Button intake = new JoystickButton(driverRight, 1);
 	private Button elevator = new JoystickButton(driverLeft, 2);
 	private Button flywheel = new JoystickButton(coDriver, 1);
+	private Button stopTurret = new JoystickButton(coDriver,12);
 	
 	public OI(){
 		GearDrop.whileHeld(new GearIntakeDrop());
 		SwitchToBall.whenPressed(new GameSelectorBalls());
 		SwitchToGear.whenPressed(new GameSelectorGear());
 		intake.whileHeld(new IntakeCommand());
+		stopTurret.whenPressed(new StopTurret());
 		elevator.whileHeld(new RunElevator(RobotMap.ELEVATOR_SPEED));
 		flywheel.whileHeld(new RunFlywheel(RobotMap.FLYWHEEL_BASE_SPEED));
+		
+		
 	}
 	public Joystick getDriverLeft(){
 		return driverLeft;

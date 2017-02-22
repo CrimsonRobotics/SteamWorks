@@ -16,11 +16,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Turret extends Subsystem {
 	private CANTalon turretTalon;	
 	private PID gainsTurret;
-	CANTalon turnMotor;
+
 	
-	public Turret(int fwID, PID gains,int turretMotorID) {
+	public Turret(int fwID, PID gains) {
 		turretTalon = new CANTalon(fwID);
-		turnMotor = new CANTalon(turretMotorID);
 		gainsTurret = gains;
 		turretTalon.setSafetyEnabled(false);
 		turretTalon.reverseSensor(false);
@@ -51,16 +50,18 @@ public class Turret extends Subsystem {
 	 		   if(angleset != 10000.0) {
 	 		   System.out.println("Two" + angleset);
 	 	   if(angleset>1)
-	 		   turnMotor.set(.07);
+	 		   turretTalon.set(.07);
 	 	//	myDrive.drive(.5, .5);
 	 	   else if(angleset<-1)
-	 		  turnMotor.set(-.07);
+	 		  turretTalon.set(-.07);
 	 		   //myDrive.drive(.5, -.5);
 	 	   else if(angleset >= -1 && angleset <= 1)
-	 		  turnMotor.set(0);
+	 		  turretTalon.set(0);
 	 		  // myDrive.drive(0, 0);
 	 	   }
-	 		 
 	 	   }
 	    }
+	public void stopTalon() {
+		turretTalon.set(0);
+	}
 }
