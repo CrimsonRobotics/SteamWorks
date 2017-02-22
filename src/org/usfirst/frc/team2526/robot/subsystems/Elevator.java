@@ -17,6 +17,7 @@ public class Elevator extends Subsystem {
 		gainsElevatorBottom = gainsBottom;
 		elevatorBottom.reverseSensor(false);
 		elevatorTop.reverseSensor(false);
+		elevatorTop.reverseOutput(true);
 		pidInit();
 	}
 	private void pidInit(){

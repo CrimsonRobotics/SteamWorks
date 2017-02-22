@@ -29,7 +29,7 @@ public class RobotMap {
 	public static final int ELEVATOR_TOP = 5;
 	public static final PID ELEVATOR_GAINS_BOTTOM = new PID(0,0,0,1);
 	public static final PID ELEVATOR_GAINS_TOP = new PID(0,0,0,1);
-	public static final int ELEVATOR_SPEED = 500;
+	public static final int ELEVATOR_SPEED = 250;
 	/*
 	 * Intake CAN IDs
 	 */
