@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2526.robot.commands.TurnWithCamera;
-import org.usfirst.frc.team2526.robot.subsystem
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.Elevator;
 import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
 import org.usfirst.frc.team2526.robot.subsystems.BallIntake;
+import org.usfirst.frc.team2526.robot.subsystems.Camera;
 import org.usfirst.frc.team2526.robot.subsystems.Climber;
 import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
-import org.usfirst.frc.team2526.robot.subsystems.Turret
+import org.usfirst.frc.team2526.robot.subsystems.Turret;
 
 /**
  * The VM is configured to automatically run this class, and to call the
