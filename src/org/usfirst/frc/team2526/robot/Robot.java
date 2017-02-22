@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc.team2526.robot.commands.TurnWithCamera;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.Elevator;
@@ -19,6 +20,7 @@ import org.usfirst.frc.team2526.robot.subsystems.Camera;
 import org.usfirst.frc.team2526.robot.subsystems.Climber;
 import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
 import org.usfirst.frc.team2526.robot.subsystems.Turret;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,6 +38,7 @@ public class Robot extends IterativeRobot {
 	/*
 	 * SUBSYSTEMS
 	 */
+	public static edu.wpi.first.wpilibj.Compressor Compressor;
   //Camera
 	public static Camera camera = new Camera();
 	//GearIntake
@@ -70,6 +73,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		new Compressor(0).start();
 	}
 
 	/**
