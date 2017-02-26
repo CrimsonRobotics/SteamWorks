@@ -25,14 +25,16 @@ public class Camera extends Subsystem {
 	
 
 	 public Camera() {
-			//table = NetworkTable.getTable("datatable");
+			
 			
 		}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-   
+   public void initTable() {
+	   table = NetworkTable.getTable("datatable");
+   }
     public double getCameraAngle() {
     	
     	

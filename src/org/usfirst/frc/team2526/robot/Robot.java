@@ -72,6 +72,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// chooser.addObject("My Auto", new MyAutoCommand());
+		Robot.camera.initTable();
 		SmartDashboard.putData("Auto mode", chooser);
 		new Compressor(0).start();
 	}
