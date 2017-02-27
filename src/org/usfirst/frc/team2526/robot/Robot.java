@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc.team2526.robot.commands.TurnWithCamera;
+import org.usfirst.frc.team2526.robot.commands.test.TestSpeedDriveCommand;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.Elevator;
 import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
@@ -38,7 +39,7 @@ public class Robot extends IterativeRobot {
 	/*
 	 * SUBSYSTEMS
 	 */
-	public static edu.wpi.first.wpilibj.Compressor Compressor;
+	//public static edu.wpi.first.wpilibj.Compressor Compressor;
   //Camera
 	public static Camera camera = new Camera();
 	//GearIntake
@@ -48,7 +49,7 @@ public class Robot extends IterativeRobot {
 	//BallIntake subsystem
 	public static final BallIntake intake = new BallIntake(RobotMap.INTAKE);
 	//DriveTrain Subsystem
-	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.DRIVETRAIN_FRONTLEFT, RobotMap.DRIVETRAIN_BACKLEFT, RobotMap.DRIVETRAIN_FRONTRIGHT, RobotMap.DRIVETRAIN_BACKRIGHT);
+	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.DRIVETRAIN_FRONTLEFT, RobotMap.DRIVETRAIN_BACKLEFT, RobotMap.DRIVETRAIN_FRONTRIGHT, RobotMap.DRIVETRAIN_BACKRIGHT, RobotMap.DRIVETRAIN_GAINS_LEFT,RobotMap.DRIVETRAIN_GAINS_RIGHT);
 	//Shifter Subsystem
 	public static final Shifter shifter = new Shifter(RobotMap.SHIFTER,RobotMap.CHANNEL);
 	//Climber Subsystem
@@ -74,7 +75,7 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		Robot.camera.initTable();
 		SmartDashboard.putData("Auto mode", chooser);
-		new Compressor(0).start();
+		//new Compressor(0).start();
 	}
 
 	/**
@@ -106,6 +107,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
+		autonomousCommand = new TestSpeedDriveCommand(200);
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -141,6 +143,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		driveTrain.outputMotorEncoderData(driveTrain.getfL(), "fL");
+		driveTrain.outputMotorEncoderData(driveTrain.getbL(), "bL");
+		driveTrain.outputMotorEncoderData(driveTrain.getfR(), "fR");
+		driveTrain.outputMotorEncoderData(driveTrain.getbR(), "bR");
 
 	}
 

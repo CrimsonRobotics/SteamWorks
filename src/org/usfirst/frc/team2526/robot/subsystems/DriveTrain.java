@@ -19,7 +19,19 @@ public class DriveTrain extends Subsystem {
 	private RobotDrive drive; //RobotDrive instance to control motors during teleop
 	private PID gainsLeft; //PID Gains for left side.
 	private PID gainsRight; //PID Gains for right side.
-	
+
+	public CANTalon getfL() {
+		return fL;
+	}
+	public CANTalon getbL() {
+		return bL;
+	}
+	public CANTalon getfR() {
+		return fR;
+	}
+	public CANTalon getbR() {
+		return bR;
+	}
 	public DriveTrain(int fLID, int bLID, int fRID, int bRID){
 		fL = new CANTalon(fLID);
 		bL = new CANTalon(bLID);
@@ -27,6 +39,10 @@ public class DriveTrain extends Subsystem {
 		bR = new CANTalon(bRID);
 		setFollowerOf(fL, bL);//fL leads bL follows
 		setFollowerOf(fR, bR);//fR leads bR follows
+		bL.setInverted(true);
+		fR.setInverted(true);
+		bR.setInverted(true);
+		fL.setInverted(true);
 		drive = new RobotDrive(this.fL, this.fR);
 	}
 	public DriveTrain(int fLID, int bLID, int fRID, int bRID, PID gainsLeft, PID gainsRight){
@@ -34,6 +50,10 @@ public class DriveTrain extends Subsystem {
 		this.gainsLeft = gainsLeft;
 		this.gainsRight = gainsRight;
 		pidInit();
+		bL.setInverted(true);
+		fR.setInverted(true);
+		bR.setInverted(true);
+		fL.setInverted(true);
 	}
 	private void pidInit(){
 		fL.setPID(gainsLeft.p, gainsLeft.i, gainsLeft.d, gainsLeft.f, gainsLeft.iZone, gainsLeft.rampRate, gainsLeft.profile);
@@ -43,7 +63,10 @@ public class DriveTrain extends Subsystem {
 		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		fR.configEncoderCodesPerRev(360);
 		fR.reverseSensor(true);
-		fL.reverseOutput(true);
+		fL.reverseSensor(false);
+		
+
+		
 	}
 	protected void initDefaultCommand() {
 		setDefaultCommand(new TeleopDrive());
@@ -54,7 +77,7 @@ public class DriveTrain extends Subsystem {
 	 */
 	public void teleopCraneDrive(Joystick left, Joystick right){
 		adjustRampRate(Robot.shifter.isShifted()? 1 : 12); //If robot is in second gear ramprate is 1 V/s else 12 V/s.
-		drive.arcadeDrive(left.getY(), -right.getX());
+		drive.arcadeDrive(left.getY(), right.getX());
 	}
 	/*
 	 * @param Speed in rotations per minute (rpm) for the left side.
@@ -96,7 +119,31 @@ public class DriveTrain extends Subsystem {
 		fR.setVoltageRampRate(rate);
 	}
 	public void printSpeedToDebug(){
-		DriverStation.getInstance().reportError("Speed Left:" + fL.getSpeed() + "Error Left:" + fL.getError(), false);
-		DriverStation.getInstance().reportError("Speed Right:" + fR.getSpeed() + "Error Right:" + fR.getError(), false);
+		SmartDashboard.putNumber("Left Speed", fL.getSpeed());
+		SmartDashboard.putNumber("Speed Right", fR.getSpeed());
 	}
+
+public void outputMotorEncoderData(CANTalon motor, String motorName) {
+		
+		String motorString = motorName + " (" + motor.getDeviceID() + ") ";
+		//SmartDashboard.putString("Motor: ", motorName);
+		SmartDashboard.putNumber(motorString + " getEncVelocity: " , motor.getEncVelocity());
+		SmartDashboard.putNumber(motorString + " getEncPosition: ", motor.getEncPosition());
+		SmartDashboard.putNumber(motorString + " getPosition: ", motor.getPosition());
+		SmartDashboard.putNumber(motorString + " getClosedLoopError: ", motor.getClosedLoopError());
+		SmartDashboard.putNumber(motorString + " getError: ", motor.getError());
+		SmartDashboard.putNumber(motorString + " getSetpoint: ", motor.getSetpoint());
+		SmartDashboard.putNumber(motorString + " getSpeed: ", motor.getSpeed());
+		SmartDashboard.putBoolean(motorString + " isSafetyEnabled: " , motor.isSafetyEnabled());
+		SmartDashboard.putString(motorString + " P:I:D: ", motor.getP() + ":" + motor.getI() +  ":" + motor.getD());
+		SmartDashboard.putNumber(motorString + " getF: ", motor.getF());
+		SmartDashboard.putNumber(motorString + " getIZone: ", motor.getIZone());
+		SmartDashboard.putNumber(motorString + " getCloseLoopRampRate: ", motor.getCloseLoopRampRate());
+		SmartDashboard.putNumber(motorString + " GetIaccum: ", motor.GetIaccum());
+		SmartDashboard.putString(motorString + " getInverted: ", "" + motor.getInverted());
+		//faults = checkCANTalonFaults(motor);
+		//SmartDashboard.putString(motorString + " talonFaults: ", faults);
+		
+	}
+	
 }
