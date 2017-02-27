@@ -5,6 +5,7 @@ import org.usfirst.frc.team2526.robot.commands.GearIntakeDrop;
 import org.usfirst.frc.team2526.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2526.robot.commands.RunElevator;
 import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
+import org.usfirst.frc.team2526.robot.commands.Shift;
 import org.usfirst.frc.team2526.robot.commands.StopTurret;
 import org.usfirst.frc.team2526.robot.commands.groups.LoadAndBallMode;
 
@@ -37,6 +38,7 @@ public class OI {
 		/*
 		 * DRIVER COMMANDS
 		 */
+		highGear.whileHeld(new Shift());
 		//highGear.whileHeld(command);
 		/*
 		 * CO DRIVER COMMANDS

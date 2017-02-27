@@ -51,7 +51,7 @@ public class Robot extends IterativeRobot {
 	//DriveTrain Subsystem
 	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.DRIVETRAIN_FRONTLEFT, RobotMap.DRIVETRAIN_BACKLEFT, RobotMap.DRIVETRAIN_FRONTRIGHT, RobotMap.DRIVETRAIN_BACKRIGHT, RobotMap.DRIVETRAIN_GAINS_LEFT,RobotMap.DRIVETRAIN_GAINS_RIGHT);
 	//Shifter Subsystem
-	public static final Shifter shifter = new Shifter(RobotMap.SHIFTER,RobotMap.CHANNEL);
+	public static final Shifter shifter = new Shifter(RobotMap.CHANNEL);
 	//Climber Subsystem
 	public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
 	//Flywheel Subsystem

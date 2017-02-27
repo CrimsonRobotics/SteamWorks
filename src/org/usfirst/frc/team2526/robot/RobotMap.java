@@ -20,8 +20,8 @@ public class RobotMap {
 	/*
 	 * Shifter ID and channel.
 	 */
-	public static final int SHIFTER = 0;//PCM CAN ID
-	public static final int CHANNEL = 6;//nead real value
+	public static final int SHIFTER = 0;//PCM CAN ID //MUST CHANGE NAME
+	public static final int CHANNEL = 0;//nead real value
 	/*
 	 * Elevator CAN IDs and PID gains
 	 */
