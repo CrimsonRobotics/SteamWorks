@@ -39,10 +39,6 @@ public class DriveTrain extends Subsystem {
 		bR = new CANTalon(bRID);
 		setFollowerOf(fL, bL);//fL leads bL follows
 		setFollowerOf(fR, bR);//fR leads bR follows
-		bL.setInverted(true);
-		fR.setInverted(true);
-		bR.setInverted(true);
-		fL.setInverted(true);
 		drive = new RobotDrive(this.fL, this.fR);
 	}
 	public DriveTrain(int fLID, int bLID, int fRID, int bRID, PID gainsLeft, PID gainsRight){
@@ -50,10 +46,6 @@ public class DriveTrain extends Subsystem {
 		this.gainsLeft = gainsLeft;
 		this.gainsRight = gainsRight;
 		pidInit();
-		bL.setInverted(true);
-		fR.setInverted(true);
-		bR.setInverted(true);
-		fL.setInverted(true);
 	}
 	private void pidInit(){
 		fL.setPID(gainsLeft.p, gainsLeft.i, gainsLeft.d, gainsLeft.f, gainsLeft.iZone, gainsLeft.rampRate, gainsLeft.profile);
@@ -62,11 +54,8 @@ public class DriveTrain extends Subsystem {
 		fL.configEncoderCodesPerRev(360);
 		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		fR.configEncoderCodesPerRev(360);
-		fR.reverseSensor(true);
+		fR.reverseSensor(false);
 		fL.reverseSensor(false);
-		
-
-		
 	}
 	protected void initDefaultCommand() {
 		setDefaultCommand(new TeleopDrive());
@@ -76,6 +65,10 @@ public class DriveTrain extends Subsystem {
 	 * @param Right joystick of the driver which controls forward and backwards motion.
 	 */
 	public void teleopCraneDrive(Joystick left, Joystick right){
+		bL.setInverted(true);
+		fR.setInverted(true);
+		bR.setInverted(true);
+		fL.setInverted(true);
 		adjustRampRate(Robot.shifter.isShifted()? 1 : 12); //If robot is in second gear ramprate is 1 V/s else 12 V/s.
 		drive.arcadeDrive(left.getY(), right.getX());
 	}
