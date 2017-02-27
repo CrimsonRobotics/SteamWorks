@@ -2,11 +2,17 @@ package org.usfirst.frc.team2526.robot.subsystems;
 
 import com.crimsonrobotics.lib.PID;
 import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Elevator extends Subsystem {
 	private CANTalon elevatorBottom;
 	private CANTalon elevatorTop;
+	private boolean bottomReversed;
+	private boolean topReversed;
+	private boolean bottomSensorReversed;
+	private boolean topSensorReversed;
 	private PID gainsElevatorTop;
 	private PID gainsElevatorBottom;
 	
@@ -15,10 +21,19 @@ public class Elevator extends Subsystem {
 		elevatorTop = new CANTalon(emID);
 		gainsElevatorTop = gainsTop;
 		gainsElevatorBottom = gainsBottom;
-		elevatorBottom.reverseSensor(false);
-		elevatorTop.reverseSensor(false);
-		elevatorTop.reverseOutput(true);
+		setupConfig();
 		pidInit();
+	}
+	private void setupConfig(){
+		Preferences prefs = Preferences.getInstance();
+		bottomReversed = prefs.getBoolean("ElevatorBottomMotorReversed", false);
+		topReversed = prefs.getBoolean("ElevatorBottomMotorReversed", false);
+		bottomSensorReversed = prefs.getBoolean("ElevatorBottomSensorReversed", false);
+		topSensorReversed = prefs.getBoolean("ElevatorTopSensorReversed", false);
+		elevatorBottom.reverseOutput(bottomReversed);
+		elevatorTop.reverseOutput(topReversed);
+		elevatorBottom.reverseSensor(bottomSensorReversed);
+		elevatorTop.reverseSensor(topSensorReversed);
 	}
 	private void pidInit(){
 		elevatorBottom.setPID(gainsElevatorBottom.p, 

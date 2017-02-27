@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
 	 * SUBSYSTEMS
 	 */
 	//public static edu.wpi.first.wpilibj.Compressor Compressor;
-  //Camera
+	//Camera
 	public static Camera camera = new Camera();
 	//GearIntake
 	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.SS_P, RobotMap.D_G_S);
