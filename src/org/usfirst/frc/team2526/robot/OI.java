@@ -30,7 +30,7 @@ public class OI {
 	private Button GearDrop = new JoystickButton(coDriver, 10);
 	private Button SwitchToBall = new JoystickButton(coDriver, 1);
 	private Button intake = new JoystickButton(driverRight, 1);
-	private Button elevator = new JoystickButton(driverLeft, 2);
+	private Button elevator = new JoystickButton(driverLeft, 3); //WIP NUMBER
 	private Button flywheel = new JoystickButton(coDriver, 1);
 	private Button stopTurret = new JoystickButton(coDriver,12);
 	
@@ -39,7 +39,6 @@ public class OI {
 		 * DRIVER COMMANDS
 		 */
 		highGear.whileHeld(new Shift());
-		//highGear.whileHeld(command);
 		/*
 		 * CO DRIVER COMMANDS
 		 */

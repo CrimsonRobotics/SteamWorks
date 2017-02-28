@@ -143,10 +143,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		driveTrain.outputMotorEncoderData(driveTrain.getfL(), "fL");
-		driveTrain.outputMotorEncoderData(driveTrain.getbL(), "bL");
-		driveTrain.outputMotorEncoderData(driveTrain.getfR(), "fR");
-		driveTrain.outputMotorEncoderData(driveTrain.getbR(), "bR");
+//		driveTrain.outputMotorEncoderData(driveTrain.getfL(), "fL");
+//		driveTrain.outputMotorEncoderData(driveTrain.getbL(), "bL");
+//		driveTrain.outputMotorEncoderData(driveTrain.getfR(), "fR");
+//		driveTrain.outputMotorEncoderData(driveTrain.getbR(), "bR");
 
 	}
 

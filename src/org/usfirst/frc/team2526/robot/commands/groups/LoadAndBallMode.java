@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LoadAndBallMode extends CommandGroup {
 
     public LoadAndBallMode() {
+    	setInterruptible(true);
     	addParallel(new IntakeCommand());
     	addParallel(new GameSelectorBalls());
         // Add Commands here:

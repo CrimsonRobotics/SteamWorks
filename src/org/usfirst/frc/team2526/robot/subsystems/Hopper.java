@@ -15,9 +15,9 @@ public class Hopper extends Subsystem {
 		setupConfig();
 	}
 	private void setupConfig(){
-		Preferences prefs = Preferences.getInstance();
-		top.setInverted(prefs.getBoolean("HopperTopMotorInverted", false));
-		bottom.setInverted(prefs.getBoolean("HopperBottomMotorInverted", false));
+//		Preferences prefs = Preferences.getInstance();
+//		top.setInverted(prefs.getBoolean("HopperTopMotorInverted", false));
+//		bottom.setInverted(prefs.getBoolean("HopperBottomMotorInverted", false));
 	}
 	@Override
 	protected void initDefaultCommand() {
