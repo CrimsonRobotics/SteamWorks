@@ -56,7 +56,7 @@ public class DriveTrain extends Subsystem {
 		fR.configEncoderCodesPerRev(360);
 		fR.reverseSensor(true);
 		fL.reverseSensor(false);
-		fL.reverseOutput(false);
+		fL.reverseOutput(true);
 		fR.reverseOutput(false);
 	}
 	protected void initDefaultCommand() {
