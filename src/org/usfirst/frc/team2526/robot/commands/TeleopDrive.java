@@ -8,6 +8,9 @@ public class TeleopDrive extends Command {
 	public TeleopDrive() {
 		requires(Robot.driveTrain);
 	}
+	protected void initialize() {
+		Robot.driveTrain.teleopDriveInit();
+	}
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {

@@ -26,6 +26,6 @@ public class TestSpeedDriveCommand extends Command {
 		return false;
 	}
 	protected void end() {
-		Robot.driveTrain.speedDriveDisable();
+		//Robot.driveTrain.speedDrive(0, 0);
 	}
 }
