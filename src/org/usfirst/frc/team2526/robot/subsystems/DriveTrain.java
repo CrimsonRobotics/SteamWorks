@@ -54,8 +54,10 @@ public class DriveTrain extends Subsystem {
 		fL.configEncoderCodesPerRev(360);
 		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		fR.configEncoderCodesPerRev(360);
-		fR.reverseSensor(false);
+		fR.reverseSensor(true);
 		fL.reverseSensor(false);
+		fL.reverseOutput(true);
+		fR.reverseOutput(false);
 	}
 	protected void initDefaultCommand() {
 		setDefaultCommand(new TeleopDrive());
@@ -69,7 +71,8 @@ public class DriveTrain extends Subsystem {
 		fR.setInverted(true);
 		bR.setInverted(true);
 		fL.setInverted(true);
-		adjustRampRate(Robot.shifter.isShifted()? 1 : 12); //If robot is in second gear ramprate is 1 V/s else 12 V/s.
+		changeLeaderControlMode(CANTalon.TalonControlMode.PercentVbus);
+		adjustRampRate(1); //If robot is in second gear ramprate is 1 V/s else 12 V/s.
 		drive.arcadeDrive(left.getY(), right.getX());
 	}
 	/*
@@ -77,11 +80,18 @@ public class DriveTrain extends Subsystem {
 	 * @param Speed in rotations per minute (rpm) for the right side.
 	 */
 	public void speedDrive(double speedLeft, double speedRight){
-		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
-		fL.enable();
 		fR.enable();
 		fR.set(speedRight);
+		fL.enable();
 		fL.set(speedLeft);
+	}
+	public void speedDriveInit() {
+		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
+		adjustRampRate(12);
+	}
+	public void speedDriveDisable() {
+		fL.disable();
+		fR.disable();
 	}
 	/*
 	 * @param Percent voltage for the left side of the drive train -1 to 1 scale.

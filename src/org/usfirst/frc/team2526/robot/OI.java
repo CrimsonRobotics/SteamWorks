@@ -43,7 +43,7 @@ public class OI {
 		 * CO DRIVER COMMANDS
 		 */
 		GearDrop.whileHeld(new GearIntakeDrop());
-		SwitchToBall.whenPressed(new LoadAndBallMode());
+		SwitchToBall.whileHeld(new LoadAndBallMode());
 		intake.whileHeld(new IntakeCommand());
 		stopTurret.whenPressed(new StopTurret());
 		elevator.whileHeld(new RunElevator(RobotMap.ELEVATOR_SPEED));
