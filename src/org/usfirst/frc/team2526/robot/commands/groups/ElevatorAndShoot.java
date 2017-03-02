@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2526.robot.commands.groups;
 
 import org.usfirst.frc.team2526.robot.RobotMap;
+import org.usfirst.frc.team2526.robot.commands.EmptyHopper;
 import org.usfirst.frc.team2526.robot.commands.GameSelectorBalls;
 import org.usfirst.frc.team2526.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2526.robot.commands.RunElevator;
@@ -17,6 +18,7 @@ public class ElevatorAndShoot extends CommandGroup {
     	setInterruptible(true);
     	addParallel(new RunFlywheel(ELEVATOR_SPEED));
     	addParallel(new RunElevator(FLYWHEEL_BASE_SPEED));
+    	addParallel(new EmptyHopper());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
