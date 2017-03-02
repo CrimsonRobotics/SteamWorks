@@ -39,7 +39,7 @@ public class Turret extends Subsystem {
 		turretTalon.set(position);
 	}
 	public void turnTurretJoystick(Joystick stick) {
-		turretTalon.set(stick.getX());
+		turretTalon.set(stick.getTwist());
 	}
 	public void turnWithCamera() {
 	 	   double angleset = Robot.camera.getCameraAngle();
