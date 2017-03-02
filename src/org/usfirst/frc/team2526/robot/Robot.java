@@ -109,7 +109,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		//autonomousCommand = chooser.getSelected();
 		autonomousCommand = new TestSpeedDriveCommand(200);
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -119,7 +119,8 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		
+		if (autonomousCommand != null)
+			autonomousCommand.start();
 	}
 
 	/**
@@ -147,7 +148,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 	}
-
 	/**
 	 * This function is called periodically during test mode
 	 */

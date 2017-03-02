@@ -7,6 +7,7 @@ import org.usfirst.frc.team2526.robot.commands.RunElevator;
 import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
 import org.usfirst.frc.team2526.robot.commands.Shift;
 import org.usfirst.frc.team2526.robot.commands.StopTurret;
+import org.usfirst.frc.team2526.robot.commands.groups.ElevatorAndShoot;
 import org.usfirst.frc.team2526.robot.commands.groups.LoadAndBallMode;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -28,10 +29,8 @@ public class OI {
 	 */
 	private Joystick coDriver = new Joystick(2);
 	private Button GearDrop = new JoystickButton(coDriver, 10);
-	private Button SwitchToBall = new JoystickButton(coDriver, 1);
-	private Button intake = new JoystickButton(driverRight, 1);
-	private Button elevator = new JoystickButton(driverLeft, 2);
-	private Button flywheel = new JoystickButton(coDriver, 1);
+	private Button BallIntake = new JoystickButton(coDriver, 1);
+	private Button Shoot = new JoystickButton(coDriver, 1);
 	private Button stopTurret = new JoystickButton(coDriver,12);
 	
 	public OI(){
@@ -39,16 +38,14 @@ public class OI {
 		 * DRIVER COMMANDS
 		 */
 		highGear.whileHeld(new Shift());
-		//highGear.whileHeld(command);
 		/*
 		 * CO DRIVER COMMANDS
 		 */
 		GearDrop.whileHeld(new GearIntakeDrop());
-		SwitchToBall.whenPressed(new LoadAndBallMode());
-		intake.whileHeld(new IntakeCommand());
+		BallIntake.whileHeld(new LoadAndBallMode());
+		Shoot.whileHeld(new ElevatorAndShoot(RobotMap.ELEVATOR_SPEED, RobotMap.FLYWHEEL_BASE_SPEED));
 		stopTurret.whenPressed(new StopTurret());
-		elevator.whileHeld(new RunElevator(RobotMap.ELEVATOR_SPEED));
-		flywheel.whileHeld(new RunFlywheel(RobotMap.FLYWHEEL_BASE_SPEED));
+
 	}
 	public Joystick getDriverLeft(){
 		return driverLeft;

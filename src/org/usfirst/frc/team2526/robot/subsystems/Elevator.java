@@ -25,15 +25,16 @@ public class Elevator extends Subsystem {
 		pidInit();
 	}
 	private void setupConfig(){
-		Preferences prefs = Preferences.getInstance();
-		bottomReversed = prefs.getBoolean("ElevatorBottomMotorReversed", false);
-		topReversed = prefs.getBoolean("ElevatorBottomMotorReversed", false);
-		bottomSensorReversed = prefs.getBoolean("ElevatorBottomSensorReversed", false);
-		topSensorReversed = prefs.getBoolean("ElevatorTopSensorReversed", false);
-		elevatorBottom.reverseOutput(bottomReversed);
-		elevatorTop.reverseOutput(topReversed);
-		elevatorBottom.reverseSensor(bottomSensorReversed);
-		elevatorTop.reverseSensor(topSensorReversed);
+		Preferences prefs;
+		//= Preferences.getInstance();
+//		bottomReversed = prefs.getBoolean("ElevatorBottomMotorReversed", false);
+//		topReversed = prefs.getBoolean("ElevatorBottomMotorReversed", false);
+//		bottomSensorReversed = prefs.getBoolean("ElevatorBottomSensorReversed", false);
+//		topSensorReversed = prefs.getBoolean("ElevatorTopSensorReversed", false);
+//		elevatorBottom.reverseOutput(bottomReversed);
+//		elevatorTop.reverseOutput(topReversed);
+//		elevatorBottom.reverseSensor(bottomSensorReversed);
+//		elevatorTop.reverseSensor(topSensorReversed);
 	}
 	private void pidInit(){
 		elevatorBottom.setPID(gainsElevatorBottom.p, 

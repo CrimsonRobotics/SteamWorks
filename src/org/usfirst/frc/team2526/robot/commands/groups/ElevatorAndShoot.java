@@ -1,22 +1,22 @@
 package org.usfirst.frc.team2526.robot.commands.groups;
 
-import org.usfirst.frc.team2526.robot.Robot;
+import org.usfirst.frc.team2526.robot.RobotMap;
 import org.usfirst.frc.team2526.robot.commands.GameSelectorBalls;
 import org.usfirst.frc.team2526.robot.commands.IntakeCommand;
-import org.usfirst.frc.team2526.robot.commands.LoadHopper;
+import org.usfirst.frc.team2526.robot.commands.RunElevator;
+import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class LoadAndBallMode extends CommandGroup {
+public class ElevatorAndShoot extends CommandGroup {
 
-    public LoadAndBallMode() {
+    public ElevatorAndShoot(int ELEVATOR_SPEED, int FLYWHEEL_BASE_SPEED) {
     	setInterruptible(true);
-    	addParallel(new IntakeCommand());
-    	addParallel(new GameSelectorBalls());
-    	addParallel(new LoadHopper());
+    	addParallel(new RunFlywheel(ELEVATOR_SPEED));
+    	addParallel(new RunElevator(FLYWHEEL_BASE_SPEED));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
