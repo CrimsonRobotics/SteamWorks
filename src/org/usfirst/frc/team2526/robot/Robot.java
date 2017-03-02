@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2526.robot;
 
 import org.usfirst.frc.team2526.robot.subsystems.GearIntake;
+import org.usfirst.frc.team2526.robot.subsystems.Hopper;
 import org.usfirst.frc.team2526.robot.subsystems.Shifter;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -58,6 +59,8 @@ public class Robot extends IterativeRobot {
 	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.FLYWHEEL_TALON_FOLLOWER, RobotMap.GAINS_FLYWHEEL);
 	//Elevator Subsystem
 	public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_GAINS_BOTTOM, RobotMap.ELEVATOR_GAINS_TOP);
+	//Hopper Subsystem
+	public static final Hopper hopper = new Hopper(RobotMap.HOPPER_TOP_TALON, RobotMap.HOPPER_BOTTOM_TALON);
 	/*
 	 * OI CONTROLS
 	 */
@@ -143,11 +146,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		driveTrain.outputMotorEncoderData(driveTrain.getfL(), "fL");
-		driveTrain.outputMotorEncoderData(driveTrain.getbL(), "bL");
-		driveTrain.outputMotorEncoderData(driveTrain.getfR(), "fR");
-		driveTrain.outputMotorEncoderData(driveTrain.getbR(), "bR");
-
 	}
 
 	/**

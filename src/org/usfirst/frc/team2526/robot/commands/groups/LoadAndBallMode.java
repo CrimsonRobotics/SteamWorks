@@ -3,6 +3,7 @@ package org.usfirst.frc.team2526.robot.commands.groups;
 import org.usfirst.frc.team2526.robot.Robot;
 import org.usfirst.frc.team2526.robot.commands.GameSelectorBalls;
 import org.usfirst.frc.team2526.robot.commands.IntakeCommand;
+import org.usfirst.frc.team2526.robot.commands.LoadHopper;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -14,6 +15,7 @@ public class LoadAndBallMode extends CommandGroup {
     public LoadAndBallMode() {
     	addParallel(new IntakeCommand());
     	addParallel(new GameSelectorBalls());
+    	addParallel(new LoadHopper());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

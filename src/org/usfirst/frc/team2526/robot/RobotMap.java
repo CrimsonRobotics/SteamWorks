@@ -58,6 +58,11 @@ public class RobotMap {
 	public static final int TURRET_TALON = 7;
 	public static final PID GAINS_TURRET = new PID(0,0,0);
 	/*
+	 * Hopper CAN IDs
+	 */
+	public static final int HOPPER_TOP_TALON = 100;
+	public static final int HOPPER_BOTTOM_TALON = 101;
+	/*
 	 * Motion profile curve base directory and names
 	 */
 	public static final String BASE_DIR = "/tmp/";
