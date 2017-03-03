@@ -3,7 +3,10 @@ package org.usfirst.frc.team2526.robot;
 import org.usfirst.frc.team2526.robot.subsystems.GearIntake;
 import org.usfirst.frc.team2526.robot.subsystems.Hopper;
 import org.usfirst.frc.team2526.robot.subsystems.Shifter;
+
+import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.command.Command;
@@ -80,6 +83,7 @@ public class Robot extends IterativeRobot {
 		Robot.camera.initTable();
 		SmartDashboard.putData("Auto mode", chooser);
 		//new Compressor(0).start();
+		CameraServer.getInstance().startAutomaticCapture(0);
 	}
 
 	/**
