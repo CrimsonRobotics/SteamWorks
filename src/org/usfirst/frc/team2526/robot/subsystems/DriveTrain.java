@@ -56,7 +56,7 @@ public class DriveTrain extends Subsystem {
 		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		fR.configEncoderCodesPerRev(360);
 		fR.reverseSensor(false);
-		fL.reverseSensor(true);
+		fL.reverseSensor(false);
 
 	}
 	protected void initDefaultCommand() {
