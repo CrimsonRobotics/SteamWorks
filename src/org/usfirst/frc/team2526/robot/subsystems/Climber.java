@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2526.robot.subsystems;
 
+import org.usfirst.frc.team2526.robot.Robot;
 import org.usfirst.frc.team2526.robot.commands.ClimberCommand;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
@@ -17,8 +18,11 @@ public class Climber extends Subsystem {
 		setDefaultCommand(new ClimberCommand());
 	}
 	public void climb(Joystick controller){
-		if (controller.getY() <= 0 ){
+		if (controller.getY() <= 0 && Robot.ClimbLockout){
 			climber.set(Math.abs(INPUT_MULTIPLIER*controller.getY()));
+		}
+		else {
+			climber.set(0);
 		}
 	}
 }

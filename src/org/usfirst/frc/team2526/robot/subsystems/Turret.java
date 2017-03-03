@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2526.robot.subsystems;
 
 import org.usfirst.frc.team2526.robot.Robot;
+import org.usfirst.frc.team2526.robot.RobotMap;
 import org.usfirst.frc.team2526.robot.commands.RunTurretJoystick;
 import org.usfirst.frc.team2526.robot.commands.TeleopDrive;
 
@@ -40,7 +41,9 @@ public class Turret extends Subsystem {
 	}
 	public void turnTurretJoystick(Joystick stick) {
 		turretTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		turretTalon.set(stick.getTwist());
+		if(!Robot.ClimbLockout) {
+		turretTalon.set(stick.getZ()*RobotMap.INPUT_MULTIPLIER);
+		}
 	}
 	public void turnWithCamera() {
 		turretTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);

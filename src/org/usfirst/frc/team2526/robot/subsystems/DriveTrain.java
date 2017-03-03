@@ -51,9 +51,9 @@ public class DriveTrain extends Subsystem {
 		fL.setPID(gainsLeft.p, gainsLeft.i, gainsLeft.d, gainsLeft.f, gainsLeft.iZone, gainsLeft.rampRate, gainsLeft.profile);
 		fR.setPID(gainsRight.p, gainsRight.i, gainsRight.d, gainsRight.f, gainsRight.iZone, gainsRight.rampRate, gainsRight.profile);
 		fL.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		fL.configEncoderCodesPerRev(360);
+		fL.configEncoderCodesPerRev(256);
 		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		fR.configEncoderCodesPerRev(360);
+		fR.configEncoderCodesPerRev(256);
 		fR.reverseSensor(false);
 		fL.reverseSensor(true);
 		fL.reverseOutput(false);
@@ -67,7 +67,12 @@ public class DriveTrain extends Subsystem {
 	 * @param Right joystick of the driver which controls forward and backwards motion.
 	 */
 	public void teleopCraneDrive(Joystick left, Joystick right){
-		drive.arcadeDrive(-left.getY(), -Math.pow(right.getX(),2));
+		if (right.getX() > 0) 
+		drive.arcadeDrive(-left.getY(), Math.pow(right.getX(),2));
+		else  {
+			drive.arcadeDrive(-left.getY(), -Math.pow(right.getX(),2));
+		}
+			
 	}
 	public void teleopDriveInit() {
 		bL.setInverted(true);

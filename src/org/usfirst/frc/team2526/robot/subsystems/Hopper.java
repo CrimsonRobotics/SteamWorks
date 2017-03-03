@@ -23,7 +23,9 @@ public class Hopper extends Subsystem {
 		bottom.set(.5);
 	}
 	/*
-	 * This is used when emptying the hopper with the elevator to shoot
+	 * This is used when emptying the hopper with the ele
+	 * 
+	 * vator to shoot
 	 * the balls.
 	 */
 	public void emptyHopper(){

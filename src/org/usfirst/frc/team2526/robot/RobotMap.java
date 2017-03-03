@@ -41,6 +41,7 @@ public class RobotMap {
 	public static final int FLYWHEEL_TALON_FOLLOWER = 9;
 	public static final PID GAINS_FLYWHEEL = new PID(0.29,0.0001,10,0.035,0,0,1);//.29,.0001,10,0.035,0,0
 	public static final int FLYWHEEL_BASE_SPEED = 3000; //RPM
+	public static final double INPUT_MULTIPLIER = 0.75; //WIP
 	/*
 	 * Gear placer Solenoids, PCM, and switch
 	 */
@@ -58,11 +59,6 @@ public class RobotMap {
 	public static final int TURRET_TALON = 7;
 	public static final PID GAINS_TURRET = new PID(0,0,0);
 	/*
-	 * Hopper CAN IDs
-	 */
-	public static final int HOPPER_TOP_TALON = 100;
-	public static final int HOPPER_BOTTOM_TALON = 101;
-	/*
 	 * Motion profile curve base directory and names
 	 */
 	public static final String BASE_DIR = "/tmp/";
@@ -70,4 +66,8 @@ public class RobotMap {
 	public static final String CURVE_LEFT = "Left";
 	public static final String CURVE_CENTER = "Center";
 	public static final String CURVE_RIGHT = "Right";
+	
+	public static final int HOPPER_TOP_TALON = 100;
+	public static final int HOPPER_BOTTOM_TALON = 101;
+
 }

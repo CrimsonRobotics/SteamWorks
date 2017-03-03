@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2526.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2526.robot.Robot;
 import org.usfirst.frc.team2526.robot.subsystems.Elevator;
@@ -27,12 +28,13 @@ public class RunElevator extends Command {
 	@Override
 	protected void execute() {
 		Robot.elevator.runElevator(rpm);
+		Robot.elevator.logSpeed();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	// Called once after isFinished returns true

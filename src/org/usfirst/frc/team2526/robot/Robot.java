@@ -61,6 +61,7 @@ public class Robot extends IterativeRobot {
 	public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_GAINS_BOTTOM, RobotMap.ELEVATOR_GAINS_TOP);
 	//Hopper Subsystem
 	public static final Hopper hopper = new Hopper(RobotMap.HOPPER_TOP_TALON, RobotMap.HOPPER_BOTTOM_TALON);
+	public static boolean ClimbLockout = false;
 	/*
 	 * OI CONTROLS
 	 */
@@ -110,7 +111,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		//autonomousCommand = chooser.getSelected();
-		autonomousCommand = new TestSpeedDriveCommand(200);
+		//autonomousCommand = new TestSpeedDriveCommand(200);
+		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -147,6 +149,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
 	/**
 	 * This function is called periodically during test mode

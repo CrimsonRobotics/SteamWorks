@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class GameSelectorBalls extends Command {
+public class ClimbBool extends Command {
 
-    public GameSelectorBalls() {
+    public ClimbBool() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.gearintake);
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -20,9 +20,8 @@ public class GameSelectorBalls extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearintake.switchtoBall();
+    	Robot.ClimbLockout = true;
     }
-   
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -30,11 +29,13 @@ public class GameSelectorBalls extends Command {
     }
 
     // Called once after isFinished returns true
-    protected void end() {	
+    protected void end() {
+    	Robot.ClimbLockout = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.ClimbLockout = false;
     }
 }

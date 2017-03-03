@@ -24,12 +24,14 @@ public class Shifter extends Subsystem {
     }
 	
 	public void shiftHigh() {
-		shifterSolenoid.set(true);
-		shifted = true;
+		shifted = false;
+		shifterSolenoid.set(shifted);
+		
 	}
 	public void shiftLow() {
-		shifterSolenoid.set(false);
-		shifted = false;
+		shifted = true;
+		shifterSolenoid.set(shifted);
+		
 		
 	}
 
