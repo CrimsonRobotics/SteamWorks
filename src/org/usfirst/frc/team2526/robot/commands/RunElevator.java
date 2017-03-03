@@ -27,7 +27,8 @@ public class RunElevator extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.elevator.runElevator(rpm);
+		//Robot.elevator.runElevator(rpm);
+		Robot.elevator.elevatorVbus(0.5);
 		Robot.elevator.logSpeed();
 	}
 

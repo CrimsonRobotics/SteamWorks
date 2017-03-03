@@ -46,18 +46,18 @@ public class DriveTrain extends Subsystem {
 		this.gainsLeft = gainsLeft;
 		this.gainsRight = gainsRight;
 		pidInit();
+		
 	}
 	private void pidInit(){
 		fL.setPID(gainsLeft.p, gainsLeft.i, gainsLeft.d, gainsLeft.f, gainsLeft.iZone, gainsLeft.rampRate, gainsLeft.profile);
 		fR.setPID(gainsRight.p, gainsRight.i, gainsRight.d, gainsRight.f, gainsRight.iZone, gainsRight.rampRate, gainsRight.profile);
 		fL.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		fL.configEncoderCodesPerRev(256);
+		fL.configEncoderCodesPerRev(360);
 		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		fR.configEncoderCodesPerRev(256);
+		fR.configEncoderCodesPerRev(360);
 		fR.reverseSensor(false);
 		fL.reverseSensor(true);
-		fL.reverseOutput(false);
-		fR.reverseOutput(true);
+
 	}
 	protected void initDefaultCommand() {
 		setDefaultCommand(new TeleopDrive());
@@ -87,8 +87,11 @@ public class DriveTrain extends Subsystem {
 	 * @param Speed in rotations per minute (rpm) for the right side.
 	 */
 	public void speedDrive(double speedLeft, double speedRight){
+
 		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
+
 		adjustRampRate(12);
+		
 		fR.enable();
 		fR.set(speedRight);
 		fL.enable();
@@ -96,6 +99,8 @@ public class DriveTrain extends Subsystem {
 	}
 	public void speedDriveInit() {
 		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
+		fL.reverseOutput(false);
+		fR.reverseOutput(true);
 		adjustRampRate(12);
 	}
 	/*

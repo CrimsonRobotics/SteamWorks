@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc.team2526.robot.commands.TurnWithCamera;
+import org.usfirst.frc.team2526.robot.commands.test.AutoCommandGroup;
 import org.usfirst.frc.team2526.robot.commands.test.TestSpeedDriveCommand;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.Elevator;
@@ -83,7 +84,7 @@ public class Robot extends IterativeRobot {
 		Robot.camera.initTable();
 		SmartDashboard.putData("Auto mode", chooser);
 		//new Compressor(0).start();
-		CameraServer.getInstance().startAutomaticCapture(0);
+		CameraServer.getInstance().startAutomaticCapture("GearCamera", "/dev/video0");
 	}
 
 	/**
@@ -114,6 +115,12 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		String pathLeft = "/tmp/";
+		String pathCenter = "/tmp/";
+		String pathRight = "/tmp";
+		//autonomousCommand = new MotionProfileDriver()
+		autonomousCommand = new TestSpeedDriveCommand(25);
+//		autonomousCommand = new AutoCommandGroup(25);
 		//autonomousCommand = chooser.getSelected();
 		//autonomousCommand = new TestSpeedDriveCommand(200);
 		

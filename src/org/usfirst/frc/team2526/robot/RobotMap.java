@@ -11,9 +11,9 @@ public class RobotMap {
 	 * Drivetrain CAN IDs and PID gains.
 	 * Gains (1.2, 0.001, 6, 1.1, 20, 0, 0)
 	 */
-	public static final int DRIVETRAIN_FRONTLEFT = 3;
+	public static final int DRIVETRAIN_FRONTLEFT = 4;
 	public static final int DRIVETRAIN_FRONTRIGHT = 13;
-	public static final int DRIVETRAIN_BACKLEFT = 4;
+	public static final int DRIVETRAIN_BACKLEFT = 3;
 	public static final int DRIVETRAIN_BACKRIGHT = 11;
 	public static final PID DRIVETRAIN_GAINS_LEFT = new PID(0, 0, 0, 1.1, 0, 0, 0);
 	public static final PID DRIVETRAIN_GAINS_RIGHT = new PID(0, 0, 0, 1.1, 0, 0, 0);

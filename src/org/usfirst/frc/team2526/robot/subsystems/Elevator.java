@@ -18,6 +18,7 @@ public class Elevator extends Subsystem {
 		elevatorTop = new CANTalon(emID);
 		gainsElevatorTop = gainsTop;
 		gainsElevatorBottom = gainsBottom;
+		elevatorTop.setInverted(true);
 		pidInit();
 	}
 	private void pidInit(){
@@ -43,14 +44,21 @@ public class Elevator extends Subsystem {
 		// TODO Auto-generated method stub
 	}
 	public void runElevator(int rpm){
-//		elevatorBottom.changeControlMode(CANTalon.TalonControlMode.Speed);
-//		elevatorTop.changeControlMode(CANTalon.TalonControlMode.Speed);
-		elevatorBottom.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		elevatorTop.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		elevatorBottom.changeControlMode(CANTalon.TalonControlMode.Speed);
+		elevatorTop.changeControlMode(CANTalon.TalonControlMode.Speed);
+		//elevatorBottom.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		//elevatorTop.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		elevatorBottom.enable();
 		elevatorBottom.set(rpm);
 		elevatorTop.enable();
 		elevatorTop.set(rpm);
+	}
+	public void elevatorVbus(double voltage) {
+		elevatorBottom.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		elevatorTop.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		elevatorTop.set(voltage);
+		elevatorBottom.set(voltage);
+
 	}
 	public void stopElevator(){
 		elevatorBottom.set(0);
