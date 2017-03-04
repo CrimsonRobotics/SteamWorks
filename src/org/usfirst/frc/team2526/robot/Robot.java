@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc.team2526.robot.commands.TurnWithCamera;
 import org.usfirst.frc.team2526.robot.commands.test.AutoCommandGroup;
 import org.usfirst.frc.team2526.robot.commands.test.TestSpeedDriveCommand;
+import org.usfirst.frc.team2526.robot.commands.test.TimeDrive;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.Elevator;
 import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
@@ -119,10 +120,11 @@ public class Robot extends IterativeRobot {
 		String pathCenter = "/tmp/";
 		String pathRight = "/tmp";
 		//autonomousCommand = new MotionProfileDriver()
-		autonomousCommand = new TestSpeedDriveCommand(25);
+//		autonomousCommand = new TestSpeedDriveCommand(25);
 //		autonomousCommand = new AutoCommandGroup(25);
 		//autonomousCommand = chooser.getSelected();
 		//autonomousCommand = new TestSpeedDriveCommand(200);
+		autonomousCommand= new TimeDrive();
 		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
