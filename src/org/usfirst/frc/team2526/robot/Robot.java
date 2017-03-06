@@ -4,6 +4,7 @@ import org.usfirst.frc.team2526.robot.subsystems.GearIntake;
 import org.usfirst.frc.team2526.robot.subsystems.Hopper;
 import org.usfirst.frc.team2526.robot.subsystems.Shifter;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -83,9 +84,12 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		Robot.camera.initTable();
-		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putData("Autonomous mode", chooser);
+		chooser.addDefault("DriveForward", new TimeDrive(5, .25, -0.25));
+		chooser.addObject("GearDrop", new AutoCommandGroup());
 		//new Compressor(0).start();
-		CameraServer.getInstance().startAutomaticCapture("GearCamera", "/dev/video0");
+		CameraServer.getInstance().startAutomaticCapture("GearCamera", "/dev/video0").setResolution(160, 90);
+
 	}
 
 	/**
@@ -124,7 +128,8 @@ public class Robot extends IterativeRobot {
 //		autonomousCommand = new AutoCommandGroup(25);
 		//autonomousCommand = chooser.getSelected();
 		//autonomousCommand = new TestSpeedDriveCommand(200);
-		autonomousCommand= new TimeDrive();
+//		autonomousCommand = new AutoCommandGroup();
+		autonomousCommand = (Command) chooser.getSelected();
 		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

@@ -1,20 +1,18 @@
-package org.usfirst.frc.team2526.robot.commands.test;
+package org.usfirst.frc.team2526.robot.commands.groups;
 
-import org.usfirst.frc.team2526.robot.commands.groups.GearDropAndHoldAuto;
-
+import org.usfirst.frc.team2526.robot.commands.GearIntakeDropAuto;
+import org.usfirst.frc.team2526.robot.commands.IntakeCommandAuto;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoCommandGroup extends CommandGroup {
+public class GearDropAndHoldAuto extends CommandGroup {
 
-
-	public AutoCommandGroup() {
+    public GearDropAndHoldAuto(double time) {
     	setInterruptible(true);
-    	addSequential(new TimeDrive(3, .25,-0.25));
-    	addSequential(new GearDropAndHoldAuto(1.2));
-    	addSequential(new TimeDrive(3, -0.25, 0.25));
+    	addParallel(new GearIntakeDropAuto(time));
+    	addParallel(new IntakeCommandAuto(time));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
