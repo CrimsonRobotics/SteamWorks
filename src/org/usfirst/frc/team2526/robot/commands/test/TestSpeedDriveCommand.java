@@ -15,7 +15,7 @@ public class TestSpeedDriveCommand extends Command {
 		this.speed = speed;
 	}
 	protected void initialize() {
-		Robot.driveTrain.speedDriveInit();
+		Robot.driveTrain.pidSpeedInit();
 	}
 	protected void execute() {
 		Robot.driveTrain.speedDrive(speed, speed);

@@ -87,6 +87,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Autonomous mode", chooser);
 		chooser.addDefault("DriveForward", new TimeDrive(5, .25, -0.25));
 		chooser.addObject("GearDrop", new AutoCommandGroup());
+		chooser.addObject("Test Speed Drive", new TestSpeedDriveCommand(300));
 		//new Compressor(0).start();
 		CameraServer.getInstance().startAutomaticCapture("GearCamera", "/dev/video0").setResolution(160, 90);
 

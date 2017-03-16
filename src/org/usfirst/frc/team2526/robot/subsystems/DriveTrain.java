@@ -19,19 +19,9 @@ public class DriveTrain extends Subsystem {
 	private RobotDrive drive; //RobotDrive instance to control motors during teleop
 	private PID gainsLeft; //PID Gains for left side.
 	private PID gainsRight; //PID Gains for right side.
-
-	public CANTalon getfL() {
-		return fL;
-	}
-	public CANTalon getbL() {
-		return bL;
-	}
-	public CANTalon getfR() {
-		return fR;
-	}
-	public CANTalon getbR() {
-		return bR;
-	}
+	public CANTalon.TalonControlMode currentMode;
+	
+	//If this drivetrain is not using PID invoke this constructor
 	public DriveTrain(int fLID, int bLID, int fRID, int bRID){
 		fL = new CANTalon(fLID);
 		bL = new CANTalon(bLID);
@@ -41,6 +31,10 @@ public class DriveTrain extends Subsystem {
 		setFollowerOf(fR, bR);//fR leads bR follows
 		drive = new RobotDrive(this.fL, this.fR);
 	}
+	protected void initDefaultCommand() {
+		setDefaultCommand(new TeleopDrive());
+	}
+	//If this drivetrain is using PID use this constructor
 	public DriveTrain(int fLID, int bLID, int fRID, int bRID, PID gainsLeft, PID gainsRight){
 		this(fLID, bLID, fRID, bRID);
 		this.gainsLeft = gainsLeft;
@@ -48,6 +42,7 @@ public class DriveTrain extends Subsystem {
 		pidInit();
 		
 	}
+	//called if drivetrain is setup for PID
 	private void pidInit(){
 		fL.setPID(gainsLeft.p, gainsLeft.i, gainsLeft.d, gainsLeft.f, gainsLeft.iZone, gainsLeft.rampRate, gainsLeft.profile);
 		fR.setPID(gainsRight.p, gainsRight.i, gainsRight.d, gainsRight.f, gainsRight.iZone, gainsRight.rampRate, gainsRight.profile);
@@ -55,12 +50,22 @@ public class DriveTrain extends Subsystem {
 		fL.configEncoderCodesPerRev(360);
 		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		fR.configEncoderCodesPerRev(360);
-		fR.reverseSensor(false);
-		fL.reverseSensor(false);
-
+		fL.reverseOutput(false);
+		fR.reverseOutput(true);
 	}
-	protected void initDefaultCommand() {
-		setDefaultCommand(new TeleopDrive());
+	//call this in the init stage of your autnomous command for speed
+	public void pidSpeedInit(){
+		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
+		adjustRampRate(12);
+	}
+	//call this in the init stage of teleop drive command
+	public void teleopDriveInit() {
+		bL.setInverted(true);
+		fR.setInverted(true);
+		bR.setInverted(true);
+		fL.setInverted(true);
+		changeLeaderControlMode(CANTalon.TalonControlMode.PercentVbus);
+		adjustRampRate(1); //If robot is in second gear ramprate is 1 V/s else 12 V/s.
 	}
 	/*
 	 * @param Left joystick of the driver which control the turning.
@@ -71,46 +76,21 @@ public class DriveTrain extends Subsystem {
 		drive.arcadeDrive(-left.getY(), Math.pow(right.getX(),2));
 		else  {
 			drive.arcadeDrive(-left.getY(), -Math.pow(right.getX(),2));
-		}
-			
-	}
-	public void teleopDriveInit() {
-		bL.setInverted(true);
-		fR.setInverted(true);
-		bR.setInverted(true);
-		fL.setInverted(true);
-		changeLeaderControlMode(CANTalon.TalonControlMode.PercentVbus);
-		adjustRampRate(1); //If robot is in second gear ramprate is 1 V/s else 12 V/s.
+		}	
 	}
 	/*
 	 * @param Speed in rotations per minute (rpm) for the left side.
 	 * @param Speed in rotations per minute (rpm) for the right side.
 	 */
 	public void speedDrive(double speedLeft, double speedRight){
-
-		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
-
-		adjustRampRate(12);
-		
 		fR.enable();
 		fR.set(speedRight);
 		fL.enable();
 		fL.set(speedLeft);
 	}
-	public void speedDriveInit() {
-		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
-		fL.reverseOutput(false);
-		fR.reverseOutput(true);
-		adjustRampRate(12);
-	}
-	/*
-	 * @param Percent voltage for the left side of the drive train -1 to 1 scale.
-	 * @param Percent voltage for the right side of the drive train -1 to 1 scale.
-	 */
-	public void percentVBusDrive(double voltageLeft, double voltageRight){
-		changeLeaderControlMode(CANTalon.TalonControlMode.PercentVbus);
-		fL.set(voltageLeft);
-		fR.set(voltageRight);
+	public void percentVBusDrive(double percentVoltageLeft, double percentVoltageRight){
+		fR.set(percentVoltageRight);
+		fL.set(percentVoltageLeft);
 	}
 	/*
 	 * @param Leading motor that should be mirrored.
@@ -124,6 +104,7 @@ public class DriveTrain extends Subsystem {
 	 * @param Control mode of the leading talons.
 	 */
 	private void changeLeaderControlMode(CANTalon.TalonControlMode mode){
+		this.currentMode = mode;
 		fL.changeControlMode(mode);
 		fR.changeControlMode(mode);
 	}
