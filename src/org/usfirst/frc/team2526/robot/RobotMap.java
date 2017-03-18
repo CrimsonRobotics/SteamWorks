@@ -15,8 +15,8 @@ public class RobotMap {
 	public static final int DRIVETRAIN_FRONTRIGHT = 13;
 	public static final int DRIVETRAIN_BACKLEFT = 3;
 	public static final int DRIVETRAIN_BACKRIGHT = 11;
-	public static final PID DRIVETRAIN_GAINS_LEFT = new PID(0, 0, 0, 1.1, 0, 0, 0);
-	public static final PID DRIVETRAIN_GAINS_RIGHT = new PID(0, 0, 0, 1.1, 0, 0, 0);
+	public static final PID DRIVETRAIN_GAINS_LEFT = new PID(1.8, 0.00005, 7, 1.5, 0, 0, 0);
+	public static final PID DRIVETRAIN_GAINS_RIGHT = new PID(1.8, 0.00005, 7, 1.5, 0, 0, 0);
 	/*
 	 * Shifter ID and channel.
 	 */

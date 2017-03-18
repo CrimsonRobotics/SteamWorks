@@ -40,23 +40,29 @@ public class DriveTrain extends Subsystem {
 		this.gainsLeft = gainsLeft;
 		this.gainsRight = gainsRight;
 		pidInit();
-		
+		teleopDriveInit();
 	}
 	//called if drivetrain is setup for PID
 	private void pidInit(){
 		fL.setPID(gainsLeft.p, gainsLeft.i, gainsLeft.d, gainsLeft.f, gainsLeft.iZone, gainsLeft.rampRate, gainsLeft.profile);
 		fR.setPID(gainsRight.p, gainsRight.i, gainsRight.d, gainsRight.f, gainsRight.iZone, gainsRight.rampRate, gainsRight.profile);
 		fL.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		fL.configEncoderCodesPerRev(360);
+		fL.configEncoderCodesPerRev(256);
 		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		fR.configEncoderCodesPerRev(360);
-		fL.reverseOutput(false);
-		fR.reverseOutput(true);
+		fR.configEncoderCodesPerRev(256);
+		fL.reverseSensor(true);
+		fR.reverseSensor(false);
 	}
 	//call this in the init stage of your autnomous command for speed
 	public void pidSpeedInit(){
 		changeLeaderControlMode(CANTalon.TalonControlMode.Speed);
-		adjustRampRate(12);
+		adjustRampRate(0);
+		bL.setInverted(false);
+		fR.setInverted(false);
+		bR.setInverted(false);
+		fL.setInverted(false);
+		fR.reverseOutput(false);
+		fL.reverseOutput(false);
 	}
 	//call this in the init stage of teleop drive command
 	public void teleopDriveInit() {
@@ -86,7 +92,7 @@ public class DriveTrain extends Subsystem {
 		fR.enable();
 		fR.set(speedRight);
 		fL.enable();
-		fL.set(speedLeft);
+		fL.set(-speedLeft);
 	}
 	public void percentVBusDrive(double percentVoltageLeft, double percentVoltageRight){
 		fR.set(percentVoltageRight);
@@ -111,10 +117,15 @@ public class DriveTrain extends Subsystem {
 	private void adjustRampRate(double rate){
 		fL.setVoltageRampRate(rate);
 		fR.setVoltageRampRate(rate);
+		bL.setVoltageRampRate(rate);
+		bR.setVoltageRampRate(rate);
 	}
 	public void printSpeedToDebug(){
 		SmartDashboard.putNumber("Left Speed", fL.getSpeed());
 		SmartDashboard.putNumber("Speed Right", fR.getSpeed());
+	}
+	public void printAngleToDebug(){
+		SmartDashboard.putNumber("Angle", Robot.gyro.getAngle());
 	}
 
 public void outputMotorEncoderData(CANTalon motor, String motorName) {

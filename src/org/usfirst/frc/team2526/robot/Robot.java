@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -87,10 +88,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Autonomous mode", chooser);
 		chooser.addDefault("DriveForward", new TimeDrive(5, .25, -0.25));
 		chooser.addObject("GearDrop", new AutoCommandGroup());
-		chooser.addObject("Test Speed Drive", new TestSpeedDriveCommand(300));
+		chooser.addObject("Test Speed Drive", new TestSpeedDriveCommand(150));
 		//new Compressor(0).start();
 		CameraServer.getInstance().startAutomaticCapture("GearCamera", "/dev/video0").setResolution(160, 90);
-
+		calibrateGyro();
 	}
 
 	/**
@@ -176,5 +177,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
+	}
+	private void calibrateGyro(){
+		gyro.calibrate();
+		Timer.delay(6);
 	}
 }

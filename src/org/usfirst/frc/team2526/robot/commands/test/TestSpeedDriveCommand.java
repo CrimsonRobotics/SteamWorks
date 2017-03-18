@@ -20,6 +20,7 @@ public class TestSpeedDriveCommand extends Command {
 	protected void execute() {
 		Robot.driveTrain.speedDrive(speed, speed);
 		Robot.driveTrain.printSpeedToDebug();
+		Robot.driveTrain.printAngleToDebug();
 	}
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub

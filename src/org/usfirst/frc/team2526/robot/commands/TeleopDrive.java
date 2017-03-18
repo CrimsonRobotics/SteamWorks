@@ -15,6 +15,8 @@ public class TeleopDrive extends Command {
 	@Override
 	protected void execute() {
 		Robot.driveTrain.teleopCraneDrive(Robot.oi.getDriverLeft(), Robot.oi.getDriverRight());
+		Robot.driveTrain.printSpeedToDebug();
+		Robot.driveTrain.printAngleToDebug();
 	}
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
