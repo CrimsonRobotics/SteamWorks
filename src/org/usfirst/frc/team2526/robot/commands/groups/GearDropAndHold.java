@@ -12,7 +12,7 @@ public class GearDropAndHold extends CommandGroup {
 
     public GearDropAndHold() {
     	setInterruptible(true);
-    	addParallel(new GearIntakeDrop());
+    	addParallel(new GearIntakeDrop(1));
     	addParallel(new IntakeCommand());
         // Add Commands here:
         // e.g. addSequential(new Command1());

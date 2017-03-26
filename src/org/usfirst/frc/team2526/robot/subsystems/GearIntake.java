@@ -18,7 +18,7 @@ public class GearIntake extends Subsystem {
 	public GearIntake(int DS_L_ONE, int DS_L_TWO, int SS_P, int D_G_S) {
 		left = new DoubleSolenoid(DS_L_ONE, DS_L_TWO); //Gear release
 		//right = new DoubleSolenoid(DS_R_ONE, DS_R_TWO); //Gear release
-		plate= new Solenoid(SS_P); //Gear vs Ball intake
+		plate = new Solenoid(SS_P); //Gear vs Ball intake
 		dropGearSensor = new DigitalInput(D_G_S);//sensor that when triggered, will drop gear
 	}
     public void initDefaultCommand() {
