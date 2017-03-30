@@ -9,9 +9,10 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class GearIntakeDrop extends Command { //TEST COMMAND
-
+	double delay;
     public GearIntakeDrop(double delay) {
         // Use requires() here to declare subsystem dependencies
+    	this.delay = delay;
         requires(Robot.gearintake);
     }
 
@@ -30,14 +31,14 @@ public class GearIntakeDrop extends Command { //TEST COMMAND
     }
 
     // Called once after isFinished returns true
-    protected void end(double delay) {
+    protected void end() {
     	Timer.delay(delay);
     	Robot.gearintake.closeGearIntake();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted(double delay) {
+    protected void interrupted() {
     	Timer.delay(delay);
     	Robot.gearintake.closeGearIntake();
     }
