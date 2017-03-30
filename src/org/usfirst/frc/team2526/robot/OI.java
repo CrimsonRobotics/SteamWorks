@@ -6,6 +6,7 @@ import org.usfirst.frc.team2526.robot.commands.GameSelectorGears;
 import org.usfirst.frc.team2526.robot.commands.GearIntakeDrop;
 import org.usfirst.frc.team2526.robot.commands.groups.GearDropClose;
 import org.usfirst.frc.team2526.robot.commands.IntakeCommand;
+import org.usfirst.frc.team2526.robot.commands.ReverseElevator;
 import org.usfirst.frc.team2526.robot.commands.RunElevator;
 import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
 import org.usfirst.frc.team2526.robot.commands.Shift;
@@ -40,6 +41,7 @@ public class OI {
 	private Button GearMode = new JoystickButton(coDriver, 5); //WIP TEST
 	private Button BallMode = new JoystickButton(coDriver, 3); //WIP TEST
 	private Button elevator = new JoystickButton(coDriver, 9); //Run Elevator Only
+	private Button reverseElevator = new JoystickButton(coDriver, 8);
 	
 	public OI(){
 		/*
@@ -63,6 +65,7 @@ public class OI {
 		BallIntake.whileHeld(new IntakeCommand());
 //		Shoot.whileHeld(new ElevatorAndShoot(RobotMap.ELEVATOR_SPEED, RobotMap.FLYWHEEL_BASE_SPEED));
 		Shoot.whileHeld(new ElevatorAndShoot(RobotMap.ELEVATOR_SPEED, RobotMap.FLYWHEEL_BASE_SPEED));
+		reverseElevator.whileHeld(new ReverseElevator());
 		}
 	public Joystick getDriverLeft(){
 		return driverLeft;
