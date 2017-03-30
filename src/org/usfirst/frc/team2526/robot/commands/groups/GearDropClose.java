@@ -1,19 +1,19 @@
 package org.usfirst.frc.team2526.robot.commands.groups;
 
-import org.usfirst.frc.team2526.robot.commands.GearIntakeDrop;
-import org.usfirst.frc.team2526.robot.commands.GearIntakeEject;
+import org.usfirst.frc.team2526.robot.commands.GearIntakeClose;
+import org.usfirst.frc.team2526.robot.commands.GearIntakeEjectClose;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class GearDropAndHold extends CommandGroup {
+public class GearDropClose extends CommandGroup {
 
-    public GearDropAndHold(boolean bool) {
-    	addParallel(new GearIntakeDrop(bool));
-    	addParallel(new GearIntakeEject(bool));
-    	end();
+    public GearDropClose() {
+    	new GearIntakeClose();
+    	new GearIntakeEjectClose();
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

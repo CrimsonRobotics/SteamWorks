@@ -4,6 +4,7 @@ import org.usfirst.frc.team2526.robot.commands.ClimbBool;
 import org.usfirst.frc.team2526.robot.commands.GameSelectorBalls;
 import org.usfirst.frc.team2526.robot.commands.GameSelectorGears;
 import org.usfirst.frc.team2526.robot.commands.GearIntakeDrop;
+import org.usfirst.frc.team2526.robot.commands.groups.GearDropClose;
 import org.usfirst.frc.team2526.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2526.robot.commands.RunElevator;
 import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
@@ -31,6 +32,7 @@ public class OI {
 	 */
 	private Joystick coDriver = new Joystick(2);
 	private Button GearDrop = new JoystickButton(coDriver, 4);
+	private Button GearDropClose = new JoystickButton(coDriver, 7);
 	private Button BallIntake = new JoystickButton(coDriver, 2);//acts as hopper must toggle
 	private Button Shoot = new JoystickButton(coDriver, 1);
 	private Button stopTurret = new JoystickButton(coDriver,12);
@@ -48,7 +50,8 @@ public class OI {
 		 * CO DRIVER COMMANDS
 		 */
 //		GearDrop.whileHeld(new GearIntakeDrop());
-		GearDrop.whileHeld(new GearDropAndHold());
+		GearDrop.whenPressed(new GearDropAndHold(true));
+		GearDropClose.whenPressed(new GearDropAndHold(false));
 //		BallIntake.whileHeld(new LoadAndBallMode());
 		//BallIntake.to
 //		Shoot.whileHeld(new ElevatorAndShoot(RobotMap.ELEVATOR_SPEED, RobotMap.FLYWHEEL_BASE_SPEED));

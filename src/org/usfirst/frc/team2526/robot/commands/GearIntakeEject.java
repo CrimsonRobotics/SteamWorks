@@ -7,23 +7,23 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class GearIntakeDrop extends Command { //TEST COMMAND
+public class GearIntakeEject extends Command {
 	boolean bool;
-    public GearIntakeDrop(boolean bool) {
+    public GearIntakeEject(boolean bool) {
     	this.bool = bool;
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.gearintake);
+        // eg. requires(chassis);
+    	requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(bool) {
-    		Robot.gearintake.dropGear();
+    	if(bool){
+    	Robot.intake.enable();
     	}
     	else {
-    		Robot.gearintake.closeGearIntake();
+    	Robot.intake.disable();
     	}
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -38,12 +38,12 @@ public class GearIntakeDrop extends Command { //TEST COMMAND
 
     // Called once after isFinished returns true
     protected void end() {
-    	//Robot.gearintake.closeGearIntake();
+    	//Robot.intake.disable();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	//Robot.gearintake.closeGearIntake();
+    	//Robot.intake.disable();
     }
 }
