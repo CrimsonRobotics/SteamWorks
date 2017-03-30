@@ -9,8 +9,10 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ReverseElevator extends Command {
-
-    public ReverseElevator() {
+	private double speed;
+	
+    public ReverseElevator(double speed) {
+    	this.speed = speed;
         requires(Robot.elevator);
     }
 
@@ -20,7 +22,7 @@ public class ReverseElevator extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.elevatorVbus(-RobotMap.ELEVATOR_SPEED);
+    	Robot.elevator.elevatorVbus(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

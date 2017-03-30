@@ -12,6 +12,7 @@ import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
 import org.usfirst.frc.team2526.robot.commands.Shift;
 import org.usfirst.frc.team2526.robot.commands.StopTurret;
 import org.usfirst.frc.team2526.robot.commands.groups.ElevatorAndShoot;
+import org.usfirst.frc.team2526.robot.commands.groups.ElevatorUnjamGroup;
 import org.usfirst.frc.team2526.robot.commands.groups.GearDropAndHold;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -65,7 +66,7 @@ public class OI {
 		BallIntake.whileHeld(new IntakeCommand());
 //		Shoot.whileHeld(new ElevatorAndShoot(RobotMap.ELEVATOR_SPEED, RobotMap.FLYWHEEL_BASE_SPEED));
 		Shoot.whileHeld(new ElevatorAndShoot(RobotMap.ELEVATOR_SPEED, RobotMap.FLYWHEEL_BASE_SPEED));
-		reverseElevator.whileHeld(new ReverseElevator());
+		reverseElevator.whileHeld(new ElevatorUnjamGroup());
 		}
 	public Joystick getDriverLeft(){
 		return driverLeft;
