@@ -8,6 +8,7 @@ import org.usfirst.frc.team2526.robot.commands.TeleopDrive;
 import com.crimsonrobotics.lib.PID;
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,13 +18,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Turret extends Subsystem {
 	private CANTalon turretTalon;	
 	private PID gainsTurret;
-
+	private DigitalInput leftSwitch;
+	private DigitalInput rightSwitch;
 	
-	public Turret(int fwID, PID gains) {
+	public Turret(int fwID, PID gains, int leftSwitchID, int rightSwitchID) {
 		turretTalon = new CANTalon(fwID);
 		gainsTurret = gains;
 		turretTalon.setSafetyEnabled(false);
 		turretTalon.reverseSensor(false);
+		leftSwitch = new DigitalInput(leftSwitchID);
+		rightSwitch = new DigitalInput(rightSwitchID);
 		pidInit();
 	}
 	private void pidInit(){
@@ -41,8 +45,12 @@ public class Turret extends Subsystem {
 	}
 	public void turnTurretJoystick(Joystick stick) {
 		turretTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		if(!Robot.ClimbLockout) {
-		turretTalon.set(stick.getZ()*RobotMap.INPUT_MULTIPLIER);
+		if(!Robot.ClimbLockout && !leftSwitch.get() && stick.getZ() > 0) {
+			turretTalon.set(stick.getZ()*RobotMap.INPUT_MULTIPLIER);
+		} else if(!Robot.ClimbLockout && !rightSwitch.get() && stick.getZ() < 0) {
+			turretTalon.set(stick.getZ()*RobotMap.INPUT_MULTIPLIER);
+		} else { 
+			turretTalon.set(0);
 		}
 	}
 	public void turnWithCamera() {

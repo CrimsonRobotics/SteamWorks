@@ -58,6 +58,8 @@ public class RobotMap {
 	 */
 	public static final int TURRET_TALON = 7;
 	public static final PID GAINS_TURRET = new PID(0,0,0);
+	public static final int LEFT_LIMIT_SWITCH = 0;
+	public static final int RIGHT_LIMIT_SWITCH = 1;
 	/*
 	 * Motion profile curve base directory and names
 	 */

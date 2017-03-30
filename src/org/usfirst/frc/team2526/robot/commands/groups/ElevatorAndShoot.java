@@ -18,6 +18,7 @@ public class ElevatorAndShoot extends CommandGroup {
     	setInterruptible(true);
     	addParallel(new RunFlywheel(ELEVATOR_SPEED));
     	addParallel(new RunElevator(FLYWHEEL_BASE_SPEED));
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

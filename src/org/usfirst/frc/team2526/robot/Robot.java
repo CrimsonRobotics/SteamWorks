@@ -23,6 +23,7 @@ import org.usfirst.frc.team2526.robot.commands.test.TestSpeedDriveCommand;
 import org.usfirst.frc.team2526.robot.commands.test.TimeDrive;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.Elevator;
+import org.usfirst.frc.team2526.robot.commands.DoNothing;
 import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
 import org.usfirst.frc.team2526.robot.subsystems.BallIntake;
 import org.usfirst.frc.team2526.robot.subsystems.Camera;
@@ -53,7 +54,7 @@ public class Robot extends IterativeRobot {
 	//GearIntake
 	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.SS_P, RobotMap.D_G_S);
 	//Turret Subsystem
-	public static final Turret turret = new Turret(RobotMap.TURRET_TALON, RobotMap.GAINS_TURRET);
+	public static final Turret turret = new Turret(RobotMap.TURRET_TALON, RobotMap.GAINS_TURRET, RobotMap.LEFT_LIMIT_SWITCH, RobotMap.RIGHT_LIMIT_SWITCH);
 	//BallIntake subsystem
 	public static final BallIntake intake = new BallIntake(RobotMap.INTAKE);
 	//DriveTrain Subsystem
@@ -89,9 +90,10 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("DriveForward", new TimeDrive(5, .25, -0.25));
 		chooser.addObject("GearDrop", new AutoCommandGroup());
 		chooser.addObject("Test Speed Drive", new TestSpeedDriveCommand(150));
+		chooser.addObject("Do Nothing", new DoNothing());
 		//new Compressor(0).start();
 		CameraServer.getInstance().startAutomaticCapture("GearCamera", "/dev/video0").setResolution(160, 90);
-		calibrateGyro();
+		gyro.calibrate();
 	}
 
 	/**
@@ -177,9 +179,5 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
-	}
-	private void calibrateGyro(){
-		gyro.calibrate();
-		Timer.delay(6);
 	}
 }

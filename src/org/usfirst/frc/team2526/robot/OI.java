@@ -59,7 +59,7 @@ public class OI {
 		elevator.whileHeld(new RunElevator(RobotMap.ELEVATOR_SPEED));
 		BallIntake.whileHeld(new IntakeCommand());
 //		Shoot.whileHeld(new ElevatorAndShoot(RobotMap.ELEVATOR_SPEED, RobotMap.FLYWHEEL_BASE_SPEED));
-		Shoot.whileHeld(new RunElevator(RobotMap.ELEVATOR_SPEED));
+		Shoot.whileHeld(new ElevatorAndShoot(RobotMap.ELEVATOR_SPEED, RobotMap.FLYWHEEL_BASE_SPEED));
 		}
 	public Joystick getDriverLeft(){
 		return driverLeft;
