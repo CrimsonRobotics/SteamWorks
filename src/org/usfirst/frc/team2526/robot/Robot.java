@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc.team2526.robot.commands.TurnWithCamera;
+import org.usfirst.frc.team2526.robot.commands.groups.TimeTurn;
 import org.usfirst.frc.team2526.robot.commands.test.AutoCommandGroup;
 import org.usfirst.frc.team2526.robot.commands.test.TestSpeedDriveCommand;
 import org.usfirst.frc.team2526.robot.commands.test.TimeDrive;
@@ -87,12 +88,15 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		Robot.camera.initTable();
 		SmartDashboard.putData("Autonomous mode", chooser);
-		chooser.addDefault("DriveForward", new TimeDrive(5, .25, -0.25));
+		chooser.addObject("DriveForward", new TimeDrive(5, .25, -0.25));
+		chooser.addObject("Time Turn Blue Boiler", new TimeTurn(.5, -.3));
+		chooser.addDefault("Time Turn Red Boiler", new TimeTurn(.3, -.5));
 		chooser.addObject("GearDrop", new AutoCommandGroup());
-		chooser.addObject("Test Speed Drive", new TestSpeedDriveCommand(150));
+		chooser.addObject("Test Speed Drive", new TestSpeedDriveCommand(200));
 		chooser.addObject("Do Nothing", new DoNothing());
 		//new Compressor(0).start();
-		CameraServer.getInstance().startAutomaticCapture("GearCamera", "/dev/video0").setResolution(160, 90);
+		CameraServer.getInstance().startAutomaticCapture("GearCamera", "/dev/video0").setResolution(768, 432);
+		//CameraServer.getInstance().startAutomaticCapture("FlywheelCamera", "/dev/video1").setResolution(320, 180);
 		gyro.calibrate();
 	}
 

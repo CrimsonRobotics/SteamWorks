@@ -36,6 +36,7 @@ public class OI {
 	private Button GearDrop = new JoystickButton(coDriver, 4);
 	private Button GearDropClose = new JoystickButton(coDriver, 7);
 	private Button BallIntake = new JoystickButton(coDriver, 2);//acts as hopper must toggle
+	private Button BallIntakeStop = new JoystickButton(coDriver, 9);
 	private Button Shoot = new JoystickButton(coDriver, 1);
 	private Button stopTurret = new JoystickButton(coDriver,12);
 	private Button ClimbMode = new JoystickButton(coDriver, 6);
@@ -63,7 +64,8 @@ public class OI {
 		GearMode.whenPressed(new GameSelectorGears());
 		BallMode.whenPressed(new GameSelectorBalls());
 		elevator.whileHeld(new RunElevator(RobotMap.ELEVATOR_SPEED));
-		BallIntake.whileHeld(new IntakeCommand());
+		BallIntake.whenPressed(new IntakeCommand(true));
+		BallIntakeStop.whenPressed(new IntakeCommand(false));
 //		Shoot.whileHeld(new ElevatorAndShoot(RobotMap.ELEVATOR_SPEED, RobotMap.FLYWHEEL_BASE_SPEED));
 		Shoot.whileHeld(new ElevatorAndShoot(RobotMap.ELEVATOR_SPEED, RobotMap.FLYWHEEL_BASE_SPEED));
 		reverseElevator.whileHeld(new ElevatorUnjamGroup());

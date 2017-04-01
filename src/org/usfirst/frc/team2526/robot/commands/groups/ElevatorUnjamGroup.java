@@ -13,8 +13,8 @@ public class ElevatorUnjamGroup extends CommandGroup {
 
     public ElevatorUnjamGroup() {
     	setInterruptible(true);
-    	addParallel(new ReverseElevator(-RobotMap.ELEVATOR_SPEED));
-    	addParallel(new IntakeCommand());
+    	addParallel(new ReverseElevator(-RobotMap.ELEVATOR_SPEED_VBUS));
+    	addParallel(new IntakeCommand(true));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

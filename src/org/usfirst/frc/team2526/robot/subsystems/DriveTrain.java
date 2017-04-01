@@ -50,8 +50,13 @@ public class DriveTrain extends Subsystem {
 		fL.configEncoderCodesPerRev(256);
 		fR.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		fR.configEncoderCodesPerRev(256);
-		fL.reverseSensor(true);
-		fR.reverseSensor(false);
+		fL.reverseSensor(false);
+		fR.reverseSensor(true);
+		//disable safety
+		fL.setSafetyEnabled(false);
+		fR.setSafetyEnabled(false);
+		bL.setSafetyEnabled(false);
+		bR.setSafetyEnabled(false);
 	}
 	//call this in the init stage of your autnomous command for speed
 	public void pidSpeedInit(){
@@ -62,7 +67,7 @@ public class DriveTrain extends Subsystem {
 		bR.setInverted(false);
 		fL.setInverted(false);
 		fR.reverseOutput(false);
-		fL.reverseOutput(false);
+		fL.reverseOutput(true);
 	}
 	//call this in the init stage of teleop drive command
 	public void teleopDriveInit() {
@@ -92,7 +97,7 @@ public class DriveTrain extends Subsystem {
 		fR.enable();
 		fR.set(speedRight);
 		fL.enable();
-		fL.set(-speedLeft);
+		fL.set(speedLeft);
 	}
 	public void percentVBusDrive(double percentVoltageLeft, double percentVoltageRight){
 		fR.set(percentVoltageRight);

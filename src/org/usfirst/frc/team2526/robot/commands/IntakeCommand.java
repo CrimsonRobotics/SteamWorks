@@ -5,21 +5,24 @@ import org.usfirst.frc.team2526.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeCommand extends Command {
-	public IntakeCommand(){
+	boolean bool;
+	public IntakeCommand(boolean bool){
+		this.bool = bool;
 		requires(Robot.intake);
 	}
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	protected void execute(){
-		Robot.intake.enable();
+		if(bool) Robot.intake.enable();
+		else Robot.intake.disable();
 	}
 	protected void end() {
-		Robot.intake.disable();
+		//Robot.intake.disable();
 	}
 	protected void interrupted() {
-		Robot.intake.disable();
+		//Robot.intake.disable();
 	}
 }

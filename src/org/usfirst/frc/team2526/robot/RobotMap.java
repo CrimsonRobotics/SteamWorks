@@ -15,13 +15,13 @@ public class RobotMap {
 	public static final int DRIVETRAIN_FRONTRIGHT = 13;
 	public static final int DRIVETRAIN_BACKLEFT = 3;
 	public static final int DRIVETRAIN_BACKRIGHT = 11;
-	public static final PID DRIVETRAIN_GAINS_LEFT = new PID(1.8, 0.00005, 7, 1.5, 0, 0, 0);
-	public static final PID DRIVETRAIN_GAINS_RIGHT = new PID(1.8, 0.00005, 7, 1.5, 0, 0, 0);
+	public static final PID DRIVETRAIN_GAINS_LEFT = new PID(1, 0, 0, .7, 0, 0, 0);
+	public static final PID DRIVETRAIN_GAINS_RIGHT = new PID(0, 0, 0, .8, 0, 0, 0);
 	/*
 	 * Shifter ID and channel.
 	 */
 	public static final int SHIFTER = 0;//PCM CAN ID //MUST CHANGE NAME
-	public static final int CHANNEL = 0;//nead real value
+	public static final int CHANNEL = 0;//need real value
 	/*
 	 * Elevator CAN IDs and PID gains
 	 */
@@ -29,7 +29,8 @@ public class RobotMap {
 	public static final int ELEVATOR_TOP = 5;
 	public static final PID ELEVATOR_GAINS_BOTTOM = new PID(0,0,0,1);
 	public static final PID ELEVATOR_GAINS_TOP = new PID(0,0,0,1);
-	public static final int ELEVATOR_SPEED = 50; //Vbus
+	public static final double ELEVATOR_SPEED_VBUS = 1;
+	public static final int ELEVATOR_SPEED = 50; //RPM & DEPRECATED
 	/*
 	 * Intake CAN IDs
 	 */
@@ -39,9 +40,9 @@ public class RobotMap {
 	 */
 	public static final int FLYWHEEL_TALON = 8;
 	public static final int FLYWHEEL_TALON_FOLLOWER = 9;
-	public static final PID GAINS_FLYWHEEL = new PID(0,0,0,1.75);//.29,.0001,10,0.035,0,0
-	public static final int FLYWHEEL_BASE_SPEED = 3000; //RPM
-	public static final double INPUT_MULTIPLIER = 0.75; //WIP
+	public static final PID GAINS_FLYWHEEL = new PID(0,0,0,2.7);//.29,.0001,10,0.035,0,0
+	public static final int FLYWHEEL_BASE_SPEED = 4500; //RPM
+	public static final double INPUT_MULTIPLIER = 0.50; //WIP
 	/*
 	 * Gear placer Solenoids, PCM, and switch
 	 */

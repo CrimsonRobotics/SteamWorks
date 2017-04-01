@@ -14,7 +14,7 @@ public class LoadAndBallMode extends CommandGroup {
 
     public LoadAndBallMode() {
     	setInterruptible(true);
-    	addParallel(new IntakeCommand());
+    	addParallel(new IntakeCommand(true));
     	addParallel(new GameSelectorBalls());
     	addParallel(new LoadHopper());
         // Add Commands here:

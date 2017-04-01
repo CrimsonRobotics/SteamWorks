@@ -14,7 +14,7 @@ public class MotionProfileDriver extends Command {
 	private boolean finished = false;
 	private double CORRECTION_FACTOR = 12;
 	private double inchesPerMeter = 39.37;
-	private double wheelInches = 0;
+	private double wheelInches;
 	
 	public MotionProfileDriver(String pathLeft, String pathRight, String pathCenter, double wheelInches){
 		requires(Robot.driveTrain);
@@ -43,7 +43,8 @@ public class MotionProfileDriver extends Command {
 	}
 	@Override
 	protected void execute() {
-		double angle = Robot.gyro.getAngle()%360.0;	
+		//double angle = Robot.gyro.getAngle()%360.0;	
+		double angle = Math.IEEEremainder(Robot.gyro.getAngle(), 360);
 		iterator += 1;
 		if(iterator < trajectoryLeft.segments.length){
 			double headingDegrees = trajectoryCenter.segments[iterator].heading * 180/Math.PI;

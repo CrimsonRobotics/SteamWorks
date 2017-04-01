@@ -10,33 +10,35 @@ import org.usfirst.frc.team2526.robot.subsystems.Elevator;
 /**
  *
  */
-public class RunElevator extends Command {
-	private int rpm;
+public class RunElevatorAuto extends Command {
+	//private int rpm;
 	Elevator elevator;
 	
 	
-	public RunElevator(int rpm) {
-		this.rpm = rpm;
+	public RunElevatorAuto(int time) {
+		super(time);
+		//this.rpm = rpm;
 		requires(Robot.elevator);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		Robot.elevator.elevatorVbus(RobotMap.ELEVATOR_SPEED_VBUS);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 		//Robot.elevator.runElevator(rpm);
-		Robot.elevator.elevatorVbus(RobotMap.ELEVATOR_SPEED_VBUS);
+		
 		Robot.elevator.logSpeed();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true
