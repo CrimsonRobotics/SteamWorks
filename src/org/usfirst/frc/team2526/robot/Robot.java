@@ -1,15 +1,37 @@
-
 package org.usfirst.frc.team2526.robot;
 
+import org.usfirst.frc.team2526.robot.subsystems.GearIntake;
+import org.usfirst.frc.team2526.robot.subsystems.Hopper;
+import org.usfirst.frc.team2526.robot.subsystems.Shifter;
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSource;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Compressor;
+import org.usfirst.frc.team2526.robot.commands.TurnWithCamera;
+import org.usfirst.frc.team2526.robot.commands.groups.TimeTurn;
+import org.usfirst.frc.team2526.robot.commands.test.AutoCommandGroup;
+import org.usfirst.frc.team2526.robot.commands.test.TestSpeedDriveCommand;
+import org.usfirst.frc.team2526.robot.commands.test.TimeDrive;
+import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2526.robot.subsystems.Elevator;
+import org.usfirst.frc.team2526.robot.commands.DoNothing;
+import org.usfirst.frc.team2526.robot.commands.RunFlywheel;
+import org.usfirst.frc.team2526.robot.subsystems.BallIntake;
+import org.usfirst.frc.team2526.robot.subsystems.Camera;
+import org.usfirst.frc.team2526.robot.subsystems.Climber;
+import org.usfirst.frc.team2526.robot.subsystems.Flywheel;
+import org.usfirst.frc.team2526.robot.subsystems.Turret;
 
-import org.usfirst.frc.team2526.robot.commands.ExampleCommand;
-import org.usfirst.frc.team2526.robot.subsystems.ExampleSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,23 +41,63 @@ import org.usfirst.frc.team2526.robot.subsystems.ExampleSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static OI oi;
-
+	/*
+	 * SENSORS
+	 */
+	//Gyro
+	public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro(Port.kOnboardCS0);
+	/*
+	 * SUBSYSTEMS
+	 */
+	//public static edu.wpi.first.wpilibj.Compressor Compressor;
+	//Camera
+	public static Camera camera = new Camera();
+	//GearIntake
+	public static GearIntake gearintake = new GearIntake(RobotMap.DS_L_ONE, RobotMap.DS_L_TWO, RobotMap.SS_P, RobotMap.D_G_S);
+	//Turret Subsystem
+	public static final Turret turret = new Turret(RobotMap.TURRET_TALON, RobotMap.GAINS_TURRET, RobotMap.LEFT_LIMIT_SWITCH, RobotMap.RIGHT_LIMIT_SWITCH);
+	//BallIntake subsystem
+	public static final BallIntake intake = new BallIntake(RobotMap.INTAKE);
+	//DriveTrain Subsystem
+	public static final DriveTrain driveTrain = new DriveTrain(RobotMap.DRIVETRAIN_FRONTLEFT, RobotMap.DRIVETRAIN_BACKLEFT, RobotMap.DRIVETRAIN_FRONTRIGHT, RobotMap.DRIVETRAIN_BACKRIGHT, RobotMap.DRIVETRAIN_GAINS_LEFT,RobotMap.DRIVETRAIN_GAINS_RIGHT);
+	//Shifter Subsystem
+	public static final Shifter shifter = new Shifter(RobotMap.CHANNEL);
+	//Climber Subsystem
+	public static final Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
+	//Flywheel Subsystem
+	public static final Flywheel flywheel = new Flywheel(RobotMap.FLYWHEEL_TALON, RobotMap.FLYWHEEL_TALON_FOLLOWER, RobotMap.GAINS_FLYWHEEL);
+	//Elevator Subsystem
+	public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_BOTTOM, RobotMap.ELEVATOR_TOP, RobotMap.ELEVATOR_GAINS_BOTTOM, RobotMap.ELEVATOR_GAINS_TOP);
+	//Hopper Subsystem
+	public static final Hopper hopper = new Hopper(RobotMap.HOPPER_TOP_TALON, RobotMap.HOPPER_BOTTOM_TALON);
+	public static boolean ClimbLockout = false;
+	/*
+	 * OI CONTROLS
+	 */
+	//OI
+	public static final OI oi = new OI();
+	/*
+	 * AUTONOMOUS AND SMARTDASHBOARD
+	 */
+	//AutonomousCommand
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
+	
 	@Override
 	public void robotInit() {
-		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		Robot.camera.initTable();
+		SmartDashboard.putData("Autonomous mode", chooser);
+		chooser.addObject("DriveForward", new TimeDrive(5, .25, -0.25));
+		chooser.addObject("Time Turn Blue Boiler", new TimeTurn(.5, -.3));
+		chooser.addDefault("Time Turn Red Boiler", new TimeTurn(.3, -.5));
+		chooser.addObject("GearDrop", new AutoCommandGroup());
+		chooser.addObject("Test Speed Drive", new TestSpeedDriveCommand(200));
+		chooser.addObject("Do Nothing", new DoNothing());
+		//new Compressor(0).start();
+		CameraServer.getInstance().startAutomaticCapture("GearCamera", "/dev/video0").setResolution(768, 432);
+		//CameraServer.getInstance().startAutomaticCapture("FlywheelCamera", "/dev/video1").setResolution(320, 180);
+		gyro.calibrate();
 	}
 
 	/**
@@ -66,8 +128,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-
+		String pathLeft = "/tmp/";
+		String pathCenter = "/tmp/";
+		String pathRight = "/tmp";
+		//autonomousCommand = new MotionProfileDriver()
+//		autonomousCommand = new TestSpeedDriveCommand(25);
+//		autonomousCommand = new AutoCommandGroup(25);
+		//autonomousCommand = chooser.getSelected();
+		//autonomousCommand = new TestSpeedDriveCommand(200);
+//		autonomousCommand = new AutoCommandGroup();
+		autonomousCommand = (Command) chooser.getSelected();
+		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -104,8 +175,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
-
 	/**
 	 * This function is called periodically during test mode
 	 */
