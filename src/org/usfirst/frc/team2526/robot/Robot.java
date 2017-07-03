@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 	/*
 	 * SENSORS
 	 */
-	//Gyro
+	//Gyroscope
 	public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro(Port.kOnboardCS0);
 	/*
 	 * SUBSYSTEMS
