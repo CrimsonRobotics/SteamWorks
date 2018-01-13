@@ -16,13 +16,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Turret extends Subsystem {
-	private CANTalon turretTalon;	
+	private WPI_TalonSRX turretTalon;	
 	private PID gainsTurret;
 	private DigitalInput leftSwitch;
 	private DigitalInput rightSwitch;
 	
 	public Turret(int fwID, PID gains, int leftSwitchID, int rightSwitchID) {
-		turretTalon = new CANTalon(fwID);
+		turretTalon = new WPI_TalonSRX(fwID);
 		gainsTurret = gains;
 		turretTalon.setSafetyEnabled(false);
 		turretTalon.reverseSensor(false);

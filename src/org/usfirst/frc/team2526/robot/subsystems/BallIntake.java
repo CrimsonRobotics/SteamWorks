@@ -4,10 +4,10 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class BallIntake extends Subsystem {
-	private CANTalon motor;
+	private WPI_TalonSRX motor;
 //	private static boolean toggled = false;
 	public BallIntake(int motorID){
-		motor = new CANTalon(motorID);
+		motor = new WPI_TalonSRX(motorID);
 	}
 	@Override
 	protected void initDefaultCommand() {

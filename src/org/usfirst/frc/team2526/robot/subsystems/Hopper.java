@@ -4,8 +4,8 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 	
 public class Hopper extends Subsystem {
-	private CANTalon top;
-	private CANTalon bottom;
+	private WPI_TalonSRX top;
+	private WPI_TalonSRX bottom;
 	
 	public Hopper(int topID, int bottomID){
 		top = new CANTalon(topID);

@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Elevator extends Subsystem {
-	private CANTalon elevatorBottom;
-	private CANTalon elevatorTop;
+	private WPI_TalonSRX elevatorBottom;
+	private WPI_TalonSRX elevatorTop;
 	private PID gainsElevatorTop;
 	private PID gainsElevatorBottom;
 	
 	public Elevator(int ebID,int emID, PID gainsTop, PID gainsBottom){
-		elevatorBottom = new CANTalon(ebID);
-		elevatorTop = new CANTalon(emID);
+		elevatorBottom = new WPI_TalonSRX(ebID);
+		elevatorTop = new WPI_TalonSRX(emID);
 		gainsElevatorTop = gainsTop;
 		gainsElevatorBottom = gainsBottom;
 		elevatorTop.setInverted(true);

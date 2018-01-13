@@ -6,13 +6,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Flywheel extends Subsystem {
-	private CANTalon fwTalon;
-	private CANTalon fwTalonFollower;
+	private WPI_TalonSRX fwTalon;
+	private WPI_TalonSRX fwTalonFollower;
 	private PID gainsFW;
 	
 	public Flywheel(int fwID, int fwFollowerID, PID gains) {
-		fwTalon = new CANTalon(fwID);
-		fwTalonFollower = new CANTalon(fwFollowerID);
+		fwTalon = new WPI_TalonSRX(fwID);
+		fwTalonFollower = new WPI_TalonSRX(fwFollowerID);
 		fwTalonFollower.changeControlMode(CANTalon.TalonControlMode.Follower);
 		fwTalonFollower.set(fwTalon.getDeviceID());
 		fwTalon.reverseOutput(true);

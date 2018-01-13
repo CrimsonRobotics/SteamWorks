@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Climber extends Subsystem {
-	private CANTalon climber;
+	private WPI_TalonSRX climber;
 	private final double INPUT_MULTIPLIER = 1;
 
 	public Climber(int CANId){
-		climber = new CANTalon(CANId);
+		climber = new WPI_TalonSRX(CANId);
 	}
 	@Override
 	protected void initDefaultCommand() {
