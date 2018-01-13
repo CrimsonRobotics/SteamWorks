@@ -86,7 +86,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		Robot.camera.initTable();
+		Robot.camera.initTable();//
 		SmartDashboard.putData("Autonomous mode", chooser);
 		chooser.addObject("DriveForward", new TimeDrive(5, .25, -0.25));
 		chooser.addObject("Time Turn Blue Boiler", new TimeTurn(.5, -.3));

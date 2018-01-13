@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem {
-	private CANTalon fL; //Front Left Motor
-	private CANTalon bL; //Back Left Motor
-	private CANTalon fR; //Front Right Motor
-	private CANTalon bR; //Back Right Motor
+	private WPI_TalonSRX fL; //Front Left Motor
+	private WPI_TalonSRX bL; //Back Left Motor
+	private WPI_TalonSRX fR; //Front Right Motor
+	private WPI_TalonSRX bR; //Back Right Motor
 	private RobotDrive drive; //RobotDrive instance to control motors during teleop
 	private PID gainsLeft; //PID Gains for left side.
 	private PID gainsRight; //PID Gains for right side.
@@ -23,13 +23,13 @@ public class DriveTrain extends Subsystem {
 	
 	//If this drivetrain is not using PID invoke this constructor
 	public DriveTrain(int fLID, int bLID, int fRID, int bRID){
-		fL = new CANTalon(fLID);
-		bL = new CANTalon(bLID);
-		fR = new CANTalon(fRID);
-		bR = new CANTalon(bRID);
+		fL = new WPI_TalonSRX(fLID);
+		bL = new WPI_TalonSRX(bLID);
+		fR = new WPI_TalonSRX(fRID);
+		bR = new WPI_TalonSRX(bRID);
 		setFollowerOf(fL, bL);//fL leads bL follows
 		setFollowerOf(fR, bR);//fR leads bR follows
-		drive = new RobotDrive(this.fL, this.fR);
+		drive = new DifferentialDrive(this.fL, this.fR);
 	}
 	protected void initDefaultCommand() {
 		setDefaultCommand(new TeleopDrive());
